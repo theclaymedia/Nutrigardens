@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriGardens — Plant-Based Nitrate Nutrition</title>
+<link rel="icon" href="Favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161810;
+    --cream:#F6F2E7;
+    --forest:#152019;
+    --forest-2:#1D2C22;
+    --sage:#4C7358;
+    --beet:#B01F3F;
+    --beet-deep:#7E152E;
+    --lime:#CFEB6E;
+    --line: rgba(246,242,231,0.14);
+    --line-dark: rgba(22,24,16,0.12);
+    --radius: 2px;
+    --container: 1240px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  .wrap{max-width:var(--container);margin:0 auto;padding:0 32px;}
+
+  h1,h2,h3,h4{
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    line-height:1.05;
+  }
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:currentColor;
+    display:inline-block;
+  }
+
+  /* ---------- Announcement bar ---------- */
+  .announce{
+    background:var(--forest);
+    color:var(--cream);
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-align:center;
+    padding:9px 12px;
+  }
+  .announce span{opacity:0.55;margin:0 10px;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(246,242,231,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .nav{
+    position:relative;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 32px;
+    max-width:var(--container);margin:0 auto;
+  }
+  .logo img{height:34px;width:auto;}
+  .nav-links{display:flex;gap:36px;font-size:14px;font-weight:500;}
+  .nav-links a{position:relative;padding:4px 0;}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--beet);transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .icon-btn{font-size:13px;font-weight:600;letter-spacing:0.02em;}
+  .cart-pill{
+    display:flex;align-items:center;gap:8px;
+    border:1px solid var(--ink);
+    padding:8px 16px;
+    border-radius:100px;
+    font-size:13px;font-weight:600;
+  }
+  .burger{display:none;flex-direction:column;gap:4px;}
+  .burger span{width:22px;height:2px;background:var(--ink);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    height:100vh;
+    min-height:640px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:var(--forest);
+  }
+  .hero-video{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0;transition:opacity 1.6s ease;
+  }
+  .hero-video.is-active{opacity:1;}
+  .hero-scrim{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(21,32,25,0.55) 0%, rgba(21,32,25,0.35) 40%, rgba(21,32,25,0.75) 100%);
+    z-index:1;
+  }
+  .hero-content{
+    position:relative;z-index:2;
+    max-width:760px;
+    text-align:center;
+    padding:0 24px;
+    color:var(--cream);
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .hero-content .eyebrow{
+    justify-content:center;color:var(--lime);margin-bottom:22px;
+  }
+  .hero-content .eyebrow::before,
+  .hero-content .eyebrow::after{content:"";width:22px;height:1px;background:currentColor;}
+  .hero-content .eyebrow::after{display:inline-block;}
+  .hero-content h1{
+    font-size:clamp(50px, 7.6vw, 104px);
+    color:var(--cream);
+    margin-bottom:22px;
+  }
+  .hero-content h1 em{
+    font-style:italic;color:var(--lime);font-weight:500;
+  }
+  .hero-content p{
+    font-size:18px;
+    max-width:520px;
+    color:rgba(246,242,231,0.82);
+    margin-bottom:36px;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:44px;}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 30px;
+    font-size:14px;font-weight:600;letter-spacing:0.02em;
+    border-radius:100px;
+    transition:transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn-primary{background:var(--beet);color:var(--cream);}
+  .btn-primary:hover{background:var(--lime);color:var(--forest);transform:translateY(-2px);}
+  .btn-ghost{border:1px solid rgba(246,242,231,0.5);color:var(--cream);}
+  .btn-ghost:hover{border-color:var(--cream);background:rgba(246,242,231,0.1);transform:translateY(-2px);}
+  .btn-dark{background:var(--forest);color:var(--cream);}
+  .btn-dark:hover{background:var(--beet);transform:translateY(-2px);}
+
+  .hero-trust{
+    display:flex;gap:28px;flex-wrap:wrap;justify-content:center;
+    font-family:'Space Mono',monospace;
+    font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+    color:rgba(246,242,231,0.7);
+  }
+  .hero-trust li{display:flex;align-items:center;gap:8px;}
+  .hero-trust li::before{content:"✓";color:var(--lime);}
+
+  .scroll-cue{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+    z-index:2;color:rgba(246,242,231,0.75);
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+  }
+  .scroll-cue .line{width:1px;height:34px;background:rgba(246,242,231,0.5);animation:scrollpulse 2s ease infinite;}
+  @keyframes scrollpulse{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+  /* ---------- Marquee ---------- */
+  .marquee{
+    background:var(--beet);color:var(--cream);
+    overflow:hidden;white-space:nowrap;
+    padding:14px 0;
+    border-bottom:1px solid var(--beet-deep);
+  }
+  .marquee-track{display:inline-block;animation:marquee 28s linear infinite;}
+  .marquee span{
+    font-family:'Space Mono',monospace;
+    font-size:13px;letter-spacing:0.1em;text-transform:uppercase;
+    padding:0 28px;
+  }
+  .marquee span::after{content:"◆";margin-left:28px;color:var(--lime);font-size:9px;vertical-align:middle;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- Section generic ---------- */
+  section{padding:120px 0;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:40px;margin-bottom:64px;flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(30px,4vw,48px);max-width:560px;}
+  .section-head p{max-width:360px;color:#5b5b4f;font-size:15px;}
+
+  /* ---------- Products ---------- */
+  .products{background:var(--cream);}
+  .product-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+    background:var(--line-dark);
+    border:1px solid var(--line-dark);
+  }
+  .product-card{
+    background:var(--cream);
+    padding:44px 36px 40px;
+    display:flex;flex-direction:column;
+    transition:background .3s ease;
+  }
+  .product-card:hover{background:#EFEADB;}
+  .product-tag{
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--beet);margin-bottom:20px;
+  }
+  .product-card img{
+    width:100%;height:260px;object-fit:contain;margin-bottom:28px;
+    mix-blend-mode:multiply;
+  }
+  .product-card h3{font-size:26px;margin-bottom:10px;}
+  .product-card .strength{
+    font-family:'Space Mono',monospace;font-size:13px;color:var(--sage);margin-bottom:14px;
+  }
+  .product-card p.desc{font-size:14.5px;color:#484840;margin-bottom:26px;flex-grow:1;}
+  .product-foot{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:20px;border-top:1px solid var(--line-dark);
+  }
+  .price{font-family:'Space Mono',monospace;font-size:15px;font-weight:700;}
+  .mini-link{font-size:13px;font-weight:600;border-bottom:1px solid var(--ink);padding-bottom:2px;}
+  .mini-link:hover{color:var(--beet);border-color:var(--beet);}
+
+  /* ---------- Science split ---------- */
+  .science{background:var(--forest-2);color:var(--cream);}
+  .split{
+    display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+  }
+  .split-media{position:relative;aspect-ratio:4/5;overflow:hidden;}
+  .split-media img{width:100%;height:100%;object-fit:cover;}
+  .split .eyebrow{color:var(--lime);margin-bottom:20px;}
+  .split h2{font-size:clamp(30px,3.6vw,42px);margin-bottom:24px;color:var(--cream);}
+  .split p{color:rgba(246,242,231,0.78);font-size:16px;margin-bottom:20px;max-width:480px;}
+  .stat-row{display:flex;gap:40px;margin:36px 0 32px;flex-wrap:wrap;}
+  .stat{font-family:'Space Mono',monospace;}
+  .stat .num{font-size:34px;font-weight:700;color:var(--lime);display:block;}
+  .stat .label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(246,242,231,0.6);}
+
+  /* ---------- Story ---------- */
+  .story{background:var(--cream);}
+  .story .split{grid-template-columns:1fr 1.05fr;}
+  .story .split-media{order:2;aspect-ratio:3/4;}
+  .story-copy .eyebrow{color:var(--beet);margin-bottom:20px;}
+  .story-copy h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:24px;}
+  .story-copy p{color:#4a4a3f;font-size:16px;margin-bottom:20px;max-width:500px;}
+  .story-copy .signature{
+    font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--beet);margin-top:28px;
+  }
+
+  /* ---------- Trust band ---------- */
+  .trust{background:var(--beet);color:var(--cream);}
+  .trust-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center;
+  }
+  .trust-grid .stat .num{color:var(--cream);}
+  .trust-grid .stat .label{color:rgba(246,242,231,0.7);}
+  .trust-head{text-align:center;max-width:640px;margin:0 auto 64px;}
+  .trust-head .eyebrow{justify-content:center;color:var(--lime);margin-bottom:18px;}
+  .trust-head h2{color:var(--cream);font-size:clamp(28px,3.4vw,40px);}
+
+  /* ---------- Gallery ---------- */
+  .gallery{background:var(--cream);}
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  }
+  .gallery-grid img{width:100%;height:340px;object-fit:cover;border-radius:var(--radius);}
+  .gallery-grid li:nth-child(2){margin-top:40px;}
+  .gallery-grid li:nth-child(4){margin-top:-40px;}
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{background:var(--forest-2);color:var(--cream);}
+  .testimonials .section-head{align-items:flex-start;}
+  .testimonials .eyebrow{color:var(--lime);margin-bottom:18px;}
+  .testimonials .section-head h2{color:var(--cream);}
+  .testimonials .section-head p{color:rgba(246,242,231,0.68);}
+  .testimonial-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+    background:rgba(246,242,231,0.14);
+    border:1px solid rgba(246,242,231,0.14);
+  }
+  .testimonial-card{
+    background:var(--forest-2);
+    padding:40px 34px;
+    display:flex;flex-direction:column;
+    transition:background .3s ease;
+  }
+  .testimonial-card:hover{background:#233428;}
+  .testimonial-stars{
+    color:var(--lime);font-size:14px;letter-spacing:2px;margin-bottom:20px;
+  }
+  .testimonial-quote{
+    font-family:'Poppins',sans-serif;
+    font-size:17px;line-height:1.55;color:var(--cream);
+    margin-bottom:28px;flex-grow:1;
+  }
+  .testimonial-person{
+    display:flex;align-items:center;gap:14px;
+    padding-top:20px;border-top:1px solid rgba(246,242,231,0.14);
+  }
+  .testimonial-avatar{
+    width:42px;height:42px;border-radius:50%;
+    background:var(--lime);color:var(--forest);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;
+    flex-shrink:0;
+  }
+  .testimonial-name{font-size:14px;font-weight:600;}
+  .testimonial-role{
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;
+    text-transform:uppercase;color:rgba(246,242,231,0.55);margin-top:2px;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:var(--forest);color:var(--cream);
+    text-align:center;
+  }
+  .cta-inner{max-width:640px;margin:0 auto;}
+  .cta .eyebrow{justify-content:center;color:var(--lime);margin-bottom:22px;}
+  .cta h2{color:var(--cream);font-size:clamp(30px,4.2vw,52px);margin-bottom:20px;}
+  .cta p{color:rgba(246,242,231,0.75);margin-bottom:38px;font-size:16px;}
+  .cta-form{display:flex;justify-content:center;gap:12px;max-width:440px;margin:0 auto 20px;flex-wrap:wrap;}
+  .cta-form input{
+    flex:1;min-width:220px;
+    background:transparent;border:1px solid rgba(246,242,231,0.4);
+    padding:15px 18px;color:var(--cream);font-size:14px;border-radius:100px;
+  }
+  .cta-form input::placeholder{color:rgba(246,242,231,0.5);}
+  .cta-fine{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;color:rgba(246,242,231,0.45);text-transform:uppercase;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--forest);color:var(--cream);padding-top:80px;border-top:1px solid rgba(246,242,231,0.1);}
+  .footer-top{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;
+    padding-bottom:60px;border-bottom:1px solid rgba(246,242,231,0.1);
+  }
+  .footer-top img{height:32px;margin-bottom:18px;filter:brightness(0) invert(1);}
+  .footer-top p{color:rgba(246,242,231,0.6);font-size:14px;max-width:280px;}
+  .footer-col h4{
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+    color:rgba(246,242,231,0.5);margin-bottom:18px;font-weight:400;
+  }
+  .footer-col a, .footer-col p{
+    display:block;font-size:14px;color:rgba(246,242,231,0.8);margin-bottom:12px;
+  }
+  .footer-col a:hover{color:var(--lime);}
+  .footer-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:26px 0;font-size:12px;color:rgba(246,242,231,0.45);flex-wrap:wrap;gap:12px;
+  }
+  .footer-bottom .disclaimer{max-width:640px;font-size:11px;line-height:1.6;}
+
+  @media(max-width:960px){
+    .nav-links{
+      display:none;
+      position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;gap:0;
+      background:var(--cream);
+      border-bottom:1px solid var(--line-dark);
+      padding:8px 32px 20px;
+    }
+    .nav-links.mobile-open{display:flex;}
+    .nav-links a{padding:12px 0;border-bottom:1px solid var(--line-dark);}
+    .burger{display:flex;cursor:pointer;}
+    .product-grid{grid-template-columns:1fr;}
+    .testimonial-grid{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr;}
+    .story .split-media{order:0;}
+    .trust-grid{grid-template-columns:repeat(2,1fr);gap:32px;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-grid li:nth-child(2),.gallery-grid li:nth-child(4){margin-top:0;}
+    .footer-top{grid-template-columns:1fr 1fr;}
+    section{padding:80px 0;}
+  }
+  @media(max-width:560px){
+    .footer-top{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .hero-trust{gap:16px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  :focus-visible{outline:2px solid var(--beet);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="announce">90-DAY MONEY-BACK GUARANTEE <span>|</span> FREE DOMESTIC SHIPPING <span>|</span> CHEF-OWNED &amp; FAMILY-OPERATED SINCE 2012</div>
+
+<header>
+  <div class="nav">
+    <a href="#" class="logo"><img src="assets/Nutrigardens_logo.png" alt="NutriGardens"></a>
+    <nav class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#science">Science</a>
+      <a href="#about">About</a>
+      <a href="#">Blog</a>
+      <a href="#">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#" class="icon-btn">Account</a>
+      <a href="#" class="cart-pill">Cart · 0</a>
+      <div class="burger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" aria-label="Introduction">
+  <video class="hero-video is-active" id="heroVideoA" autoplay muted loop playsinline
+    src="assets/videos/close-up-of-fresh-green-spinach-leaves-2025-12-17-19-04-43-utc.mp4"></video>
+  <video class="hero-video" id="heroVideoB" muted loop playsinline
+    src="assets/videos/beet-harvest-in-the-garden-selective-focus-2025-12-17-21-28-56-utc.mp4"></video>
+  <div class="hero-scrim"></div>
+
+  <div class="hero-content">
+    <div class="eyebrow">Plant-based nitrate nutrition</div>
+    <h1>Grow stronger.<br>Move <em>further.</em></h1>
+    <p>Real red spinach, real beets, real tart cherries — grown, not manufactured, to fuel your circulation, your workouts, and your comeback. No sugar. No caffeine. No shortcuts, ever.</p>
+    <div class="hero-ctas">
+      <a href="#shop" class="btn btn-primary">Shop the collection</a>
+      <a href="#science" class="btn btn-ghost">See the science</a>
+    </div>
+    <ul class="hero-trust">
+      <li>90-day guarantee</li>
+      <li>Free domestic shipping</li>
+      <li>3rd-party tested</li>
+      <li>Chef-owned since 2012</li>
+    </ul>
+  </div>
+
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" role="presentation">
+  <div class="marquee-track">
+    <span>Red Spinach</span><span>Beets</span><span>Tart Cherry</span><span>Zero Sugar</span><span>Zero Caffeine</span><span>Coach Trusted</span><span>Red Spinach</span><span>Beets</span><span>Tart Cherry</span><span>Zero Sugar</span><span>Zero Caffeine</span><span>Coach Trusted</span>
+  </div>
+</div>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Three foods. One mission — keep you moving.</h2>
+      <p>Every formula starts as a whole plant, not a lab powder. Pick the one that matches how you move today.</p>
+    </div>
+
+    <div class="product-grid">
+
+      <article class="product-card">
+        <div class="product-tag">Daily · Cardiovascular support</div>
+        <img src="assets/products/VitaSpinach.png" alt="VitaSpinach product bottle">
+        <h3>VitaSpinach®</h3>
+        <div class="strength">235mg measured nitrate / serving</div>
+        <p class="desc">A daily red spinach extract built for everyday circulation and nitric oxide support — the clean-food habit that starts every morning right.</p>
+        <div class="product-foot">
+          <span class="price">$39.95</span>
+          <a href="#" class="mini-link">View / Add →</a>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-tag">For athletes · Performance</div>
+        <img src="assets/products/RS400.png" alt="RS400 product bottle">
+        <h3>RS400™</h3>
+        <div class="strength">400mg measured nitrate / serving</div>
+        <p class="desc">Pure, single-ingredient red spinach at full strength — trusted by collegiate, professional, and Olympic teams to fuel peak performance.</p>
+        <div class="product-foot">
+          <span class="price">$59.95</span>
+          <a href="#" class="mini-link">View / Add →</a>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-tag">Recovery · Energy</div>
+        <img src="assets/products/Beet_Boost.png" alt="Beet Boost product pouch">
+        <h3>Beet Boost®</h3>
+        <div class="strength">USA-grown beets + tart cherry</div>
+        <p class="desc">The one that started it all. A great-tasting powder that renews muscles and restores energy after every hard effort.</p>
+        <div class="product-foot">
+          <span class="price">$39.95</span>
+          <a href="#" class="mini-link">View / Add →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCIENCE ================= -->
+<section class="science" id="science">
+  <div class="wrap split">
+    <div class="split-media">
+      <img src="assets/lifestyle_photos/athletic-woman-jogging-through-a-forest-trail-2026-03-16-03-29-11-utc.jpg" alt="Athletic woman jogging through a forest trail">
+    </div>
+    <div class="split-copy">
+      <div class="eyebrow">Why nitrates</div>
+      <h2>Nitrates are what make us healthy.</h2>
+      <p>Plant nitrates convert to nitric oxide in the body, supporting healthy circulation and athletic performance. We deliver a consistent, reliable source of dietary nitrate — concentrated to its purest, cleanest form.</p>
+      <div class="stat-row">
+        <div class="stat"><span class="num">235mg</span><span class="label">VitaSpinach / serving</span></div>
+        <div class="stat"><span class="num">400mg</span><span class="label">RS400 / serving</span></div>
+        <div class="stat"><span class="num">2012</span><span class="label">Since</span></div>
+      </div>
+      <a href="#" class="btn btn-primary">Read the research</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="story" id="about">
+  <div class="wrap split">
+    <div class="story-copy">
+      <div class="eyebrow">From crash to comeback</div>
+      <h2>It started with a bike crash, and a mess of beet juice.</h2>
+      <p>Back in 2012, our founder and chef Rick was searching for a better way to recover after a serious bike crash. Juicing beets was his first solution — messy, time-consuming, and far from convenient.</p>
+      <p>That challenge became Beet Boost: a simple, great-tasting powder delivering the nitric-oxide power of beets plus the recovery support of tart cherries. It now sits alongside our red spinach lineup — VitaSpinach for everyday health, RS400 for athletes competing at the highest level.</p>
+      <div class="signature">— Rick, Founder &amp; Chef</div>
+    </div>
+    <div class="split-media">
+      <img src="assets/lifestyle_photos/blonde-woman-stretches-before-run-in-autumn-woods-2026-03-25-05-41-58-utc.jpg" alt="Woman stretching before a run in autumn woods">
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST ================= -->
+<section class="trust">
+  <div class="wrap">
+    <div class="trust-head">
+      <div class="eyebrow">Tested and trusted</div>
+      <h2>We take science seriously.</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="stat"><span class="num">2012</span><span class="label">Founded in Portland, OR</span></div>
+      <div class="stat"><span class="num">90-Day</span><span class="label">Money-back guarantee</span></div>
+      <div class="stat"><span class="num">3rd-Party</span><span class="label">Tested for efficacy</span></div>
+      <div class="stat"><span class="num">Olympic</span><span class="label">& collegiate coaches trust us</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Built for people who move.</h2>
+      <p>Athletes, coaches, and everyday movers who choose food-based nutrition over traditional supplements.</p>
+    </div>
+    <ul class="gallery-grid">
+      <li><img src="assets/lifestyle_photos/adventurous-woman-stretching-on-a-forest-trail-2026-01-09-09-23-21-utc.jpg" alt="Woman stretching on a forest trail"></li>
+      <li><img src="assets/lifestyle_photos/rear-view-of-mixed-race-female-athlete-stretching-2026-03-25-02-59-46-utc.jpg" alt="Rear view of female athlete stretching"></li>
+      <li><img src="assets/lifestyle_photos/athletic-woman-jogging-through-a-forest-trail-2026-03-16-03-29-11-utc.jpg" alt="Athletic woman jogging through a forest trail"></li>
+      <li><img src="assets/lifestyle_photos/blonde-woman-stretches-before-run-in-autumn-woods-2026-03-25-05-41-58-utc.jpg" alt="Blonde woman stretches before a run in autumn woods"></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta">
+  <div class="wrap cta-inner">
+    <div class="eyebrow">Join the garden</div>
+    <h2>Save 20% on your first order.</h2>
+    <p>Sign up for early access to new formulas, athlete stories, and exclusive offers — no spam, just clean food news.</p>
+    <form class="cta-form" onsubmit="return false;">
+      <input type="email" placeholder="you@email.com" required aria-label="Email address">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div class="cta-fine">Free domestic shipping · 90-day money-back guarantee</div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Real people. Real results.</h2>
+      <p>From weekend hikers to Olympic hopefuls — here's what happens when clean nitrate nutrition becomes part of the routine.</p>
+    </div>
+
+    <div class="testimonial-grid">
+
+      <article class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">RS400 changed my training. My energy is steadier through long runs and I'm recovering faster than I have in years. I genuinely notice the difference on the days I skip it.</p>
+        <div class="testimonial-person">
+          <div class="testimonial-avatar">JM</div>
+          <div>
+            <div class="testimonial-name">Jamie M.</div>
+            <div class="testimonial-role">Collegiate distance runner</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">VitaSpinach is now a non-negotiable part of my morning. It's the first supplement that's ever felt like food instead of a chemistry experiment — and it actually works.</p>
+        <div class="testimonial-person">
+          <div class="testimonial-avatar">RT</div>
+          <div>
+            <div class="testimonial-name">Rachel T.</div>
+            <div class="testimonial-role">Verified customer, 3 years</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Beet Boost got me through recovery after my crash. Great taste, no jitters, no crash of its own — just steady energy I can count on before every session.</p>
+        <div class="testimonial-person">
+          <div class="testimonial-avatar">DK</div>
+          <div>
+            <div class="testimonial-name">Devon K.</div>
+            <div class="testimonial-role">Coach, high school track</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <img src="assets/Nutrigardens_logo.png" alt="NutriGardens">
+        <p>Plant-based, chef-owned, and family-operated since 2012. Clean, functional food that works.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick links</h4>
+        <a href="#">FAQ</a>
+        <a href="#">Contact</a>
+        <a href="#">Custom</a>
+        <a href="#">Blog</a>
+        <a href="#">Affiliates</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>NutriGardens, LLC</p>
+        <p>+1 971 325 2374</p>
+        <p>13500 SW Pacific Hwy. #58-250<br>Portland, Oregon 97223</p>
+      </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <a href="#">Refund policy</a>
+        <a href="#">Privacy policy</a>
+        <a href="#">Shipping policy</a>
+        <a href="#">Terms of service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 NutriGardens, LLC.</span>
+      <span class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Cross-fade the two hero videos so both product stories (spinach + beet)
+  // play in the hero without needing a single combined file.
+  (function(){
+    var a = document.getElementById('heroVideoA');
+    var b = document.getElementById('heroVideoB');
+    if(!a || !b) return;
+    var current = a, next = b;
+    var SWAP_MS = 9000;
+
+    function swap(){
+      next.currentTime = 0;
+      next.play().catch(function(){});
+      next.classList.add('is-active');
+      current.classList.remove('is-active');
+      var tmp = current; current = next; next = tmp;
+    }
+    setInterval(swap, SWAP_MS);
+  })();
+
+  // Mobile menu toggle
+  document.querySelector('.burger').addEventListener('click', function(){
+    document.querySelector('.nav-links').classList.toggle('mobile-open');
+  });
+</script>
+
+</body>
+</html>

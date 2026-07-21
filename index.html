@@ -385,6 +385,14 @@
             padding: 16px 34px;
             font-size: 15px;
         }
+        .btn-redirect {
+            border-color: var(--lime) !important;
+            color: var(--lime) !important;
+        }
+        .btn-redirect:hover {
+            background: var(--lime) !important;
+            color: var(--forest) !important;
+        }
 
         .hero-products {
             display: flex;
@@ -636,8 +644,8 @@
             margin-bottom: 20px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
         }
         .ribbon {
             font-family: 'Space Mono', monospace;
@@ -652,6 +660,11 @@
         }
         .ribbon.alt {
             background: var(--forest-2);
+        }
+        .ribbon.cross {
+            background: var(--lime);
+            color: var(--forest);
+            font-size: 8px;
         }
         .product-card img {
             width: 100%;
@@ -1148,7 +1161,7 @@
             max-height: 200px;
         }
 
-        /* ===== CTA ===== */
+        /* ===== LEAD MAGNET CTA (replaces 20% off) ===== */
         .cta {
             background: var(--forest);
             color: var(--cream);
@@ -1166,18 +1179,19 @@
         .cta h2 {
             color: var(--cream);
             font-size: clamp(30px, 4.2vw, 52px);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
-        .cta p {
-            color: rgba(246, 242, 231, 0.75);
-            margin-bottom: 38px;
-            font-size: 16px;
+        .cta .sub-lead {
+            color: rgba(246, 242, 231, 0.8);
+            margin-bottom: 32px;
+            font-size: 17px;
+            line-height: 1.6;
         }
         .cta-form {
             display: flex;
             justify-content: center;
             gap: 12px;
-            max-width: 440px;
+            max-width: 480px;
             margin: 0 auto 20px;
             flex-wrap: wrap;
         }
@@ -1200,6 +1214,20 @@
             letter-spacing: 0.05em;
             color: rgba(246, 242, 231, 0.45);
             text-transform: uppercase;
+        }
+        .cta .guide-bullets {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 24px;
+            margin: 20px 0 30px;
+            font-size: 13px;
+            color: rgba(246, 242, 231, 0.7);
+            font-family: 'Space Mono', monospace;
+        }
+        .cta .guide-bullets span::before {
+            content: "✓ ";
+            color: var(--lime);
         }
 
         /* ===== FOOTER ===== */
@@ -1245,6 +1273,23 @@
         }
         .footer-col a:hover {
             color: var(--lime);
+        }
+        .footer-cross {
+            display: inline-block;
+            background: rgba(207, 235, 110, 0.12);
+            padding: 4px 14px;
+            border-radius: 100px;
+            color: var(--lime);
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            margin-top: 10px;
+        }
+        .footer-cross a {
+            color: var(--lime);
+            border-bottom: 1px solid var(--lime);
+            display: inline-block;
+            margin-bottom: 0;
         }
         .footer-bottom {
             display: flex;
@@ -1411,6 +1456,10 @@
                 font-size: 9px;
                 padding: 6px 12px;
             }
+            .cta .guide-bullets {
+                font-size: 11px;
+                gap: 8px 16px;
+            }
         }
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -1515,7 +1564,7 @@
             <span class="arrow">⟶</span>
             <span class="brand">
                 <span>🌿</span>
-                <a href="#">Red Spinach Company</a>
+                <a href="https://redspinachcompany.com/" target="_blank">Red Spinach Company</a>
                 <span class="badge">exclusive home of red spinach</span>
             </span>
             <span style="opacity:0.4;font-size:10px;">— seamless cross‑over</span>
@@ -1524,7 +1573,6 @@
 
     <!-- ===== HERO — PRODUCT-FOCUSED ===== -->
     <section class="hero" aria-label="Introduction">
-        <!-- background image instead of video for better product focus -->
         <img class="hero-bg" src="assets/lifestyle_photos/athletic-woman-jogging-through-a-forest-trail-2026-03-16-03-29-11-utc.jpg" alt="" aria-hidden="true" />
         <div class="hero-scrim"></div>
 
@@ -1537,6 +1585,7 @@
                 <div class="hero-ctas">
                     <a href="#shop" class="btn btn-primary">Shop the new line</a>
                     <a href="#science" class="btn btn-ghost">See the research</a>
+                    <a href="https://redspinachcompany.com/" target="_blank" class="btn btn-ghost btn-redirect">Visit Red Spinach Company →</a>
                 </div>
             </div>
 
@@ -1604,7 +1653,11 @@
             <div class="product-grid">
 
                 <article class="product-card is-flagship">
-                    <div class="product-tag">Daily · Cardiovascular support <span class="ribbon">Most Popular</span></div>
+                    <div class="product-tag">
+                        Daily · Cardiovascular support
+                        <span class="ribbon">Most Popular</span>
+                        <span class="ribbon cross">Also at Red Spinach Co.</span>
+                    </div>
                     <img src="assets/products/VitaSpinach.png" alt="VitaSpinach product bottle" />
                     <h3>VitaSpinach®</h3>
                     <div class="strength">235mg measured nitrate / serving</div>
@@ -1616,7 +1669,11 @@
                 </article>
 
                 <article class="product-card is-flagship">
-                    <div class="product-tag">For athletes · Performance <span class="ribbon alt">Athlete's Choice</span></div>
+                    <div class="product-tag">
+                        For athletes · Performance
+                        <span class="ribbon alt">Athlete's Choice</span>
+                        <span class="ribbon cross">Also at Red Spinach Co.</span>
+                    </div>
                     <img src="assets/products/RS400.png" alt="RS400 product bottle" />
                     <h3>RS400®</h3>
                     <div class="strength">400mg measured nitrate / serving</div>
@@ -1864,17 +1921,22 @@
         </div>
     </section>
 
-    <!-- ===== CTA ===== -->
-    <section class="cta">
+    <!-- ===== LEAD MAGNET CTA (replaces 20% off) ===== -->
+    <section class="cta" id="lead-magnet">
         <div class="wrap cta-inner">
-            <div class="eyebrow">Join the garden</div>
-            <h2>Save 20% on your first order.</h2>
-            <p>Sign up for early access to new formulas, athlete stories, and exclusive offers — no spam, just clean food news.</p>
+            <div class="eyebrow">Free download</div>
+            <h2>Get the Free Red Spinach Nitrate Guide</h2>
+            <p class="sub-lead">7 clinical studies, athlete protocols, and a 5‑day meal plan — all in one free PDF.</p>
+            <div class="guide-bullets">
+                <span>Stanford &amp; UAB study summaries</span>
+                <span>Dosing for performance &amp; recovery</span>
+                <span>5‑day meal plan with recipes</span>
+            </div>
             <form class="cta-form" onsubmit="return false;">
                 <input type="email" placeholder="you@email.com" required aria-label="Email address" />
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Send me the guide →</button>
             </form>
-            <div class="cta-fine">Free domestic shipping · 90-day money-back guarantee</div>
+            <div class="cta-fine">No spam · Unsubscribe anytime · 90‑day money‑back guarantee</div>
         </div>
     </section>
 
@@ -1885,9 +1947,9 @@
                 <div>
                     <img src="assets/Nutrigardens_logo.png" alt="NutriGardens" />
                     <p>Plant-based, chef-owned, and family-operated since 2012. Clean, functional food that works.</p>
-                    <p style="margin-top:12px;font-size:12px;color:rgba(246,242,231,0.4);">
-                        <span style="display:inline-block;background:rgba(207,235,110,0.12);padding:2px 12px;border-radius:100px;color:var(--lime);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;">🌱 Also visit <a href="#" style="color:var(--lime);border-bottom:1px solid var(--lime);">Red Spinach Company</a></span>
-                    </p>
+                    <div class="footer-cross">
+                        🌱 Also visit <a href="https://redspinachcompany.com/" target="_blank">Red Spinach Company</a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Quick links</h4>
@@ -1935,7 +1997,6 @@
 
         // ===== SEARCH — 100+ educational articles =====
         (function() {
-            // Extended article corpus — 100+ organic educational entries
             var articles = [
                 { title: "What is dietary nitrate?", category: "Science", url: "#" },
                 { title: "Red spinach vs. beetroot — nitrate comparison", category: "Science", url: "#" },
@@ -2062,7 +2123,6 @@
                     resultsContainer.innerHTML = '<div class="sr-empty">No articles found · try "nitrate" or "red spinach"</div>';
                 } else {
                     var html = '';
-                    // show up to 8 results
                     var shown = matches.slice(0, 8);
                     shown.forEach(function(a) {
                         html += '<a href="' + a.url + '" class="sr-item">' +
@@ -2095,7 +2155,6 @@
                 }
             });
 
-            // Close on escape
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     resultsContainer.classList.remove('is-visible');

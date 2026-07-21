@@ -330,6 +330,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            /* 👇 Shift the entire hero content upward for better 1080p positioning */
+            transform: translateY(-40px);
         }
         .hero-text .eyebrow {
             color: var(--lime);
@@ -1313,6 +1315,7 @@
                 grid-template-columns: 1fr;
                 gap: 40px;
                 text-align: center;
+                transform: translateY(0); /* reset shift on smaller screens */
             }
             .hero-text .sub {
                 margin-left: auto;
@@ -1459,6 +1462,9 @@
             .cta .guide-bullets {
                 font-size: 11px;
                 gap: 8px 16px;
+            }
+            .hero-content {
+                transform: translateY(0);
             }
         }
         @media (prefers-reduced-motion: reduce) {

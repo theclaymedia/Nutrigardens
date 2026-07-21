@@ -1,925 +1,2108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NutriGardens — Plant-Based Nitrate Nutrition</title>
-<link rel="icon" href="assets/Favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#161810;
-    --cream:#F6F2E7;
-    --forest:#152019;
-    --forest-2:#1D2C22;
-    --sage:#4C7358;
-    --beet:#B01F3F;
-    --beet-deep:#7E152E;
-    --lime:#CFEB6E;
-    --line: rgba(246,242,231,0.14);
-    --line-dark: rgba(22,24,16,0.12);
-    --radius: 2px;
-    --container: 1240px;
-  }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NutriGardens — Plant-Based Nitrate Nutrition</title>
+    <link rel="icon" href="assets/Favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        :root {
+            --ink: #161810;
+            --cream: #F6F2E7;
+            --forest: #152019;
+            --forest-2: #1D2C22;
+            --sage: #4C7358;
+            --beet: #B01F3F;
+            --beet-deep: #7E152E;
+            --lime: #CFEB6E;
+            --line: rgba(246, 242, 231, 0.14);
+            --line-dark: rgba(22, 24, 16, 0.12);
+            --radius: 2px;
+            --container: 1240px;
+            --transition: 0.3s ease;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        ul {
+            list-style: none;
+        }
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .wrap {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.05;
+        }
+        .eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .eyebrow::before {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background: currentColor;
+            display: inline-block;
+        }
 
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--cream);
-    color:var(--ink);
-    font-family:'Inter',sans-serif;
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  img{display:block;max-width:100%;}
-  a{color:inherit;text-decoration:none;}
-  ul{list-style:none;}
-  button{font-family:inherit;cursor:pointer;border:none;background:none;}
-  .wrap{max-width:var(--container);margin:0 auto;padding:0 32px;}
+        /* ===== ANNOUNCEMENT BAR — BEET ALTERNATIVE ===== */
+        .announce {
+            background: var(--beet);
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-align: center;
+            padding: 12px 16px;
+            border-bottom: 2px solid var(--beet-deep);
+        }
+        .announce strong {
+            color: var(--lime);
+            font-weight: 700;
+        }
+        .announce a {
+            display: inline-block;
+            font-weight: 600;
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            padding-bottom: 1px;
+            margin-left: 6px;
+            transition: border-color var(--transition);
+        }
+        .announce a:hover {
+            border-color: var(--lime);
+            color: var(--lime);
+        }
+        .announce .sep {
+            opacity: 0.4;
+            margin: 0 10px;
+        }
 
-  h1,h2,h3,h4{
-    font-family:'Poppins',sans-serif;
-    font-weight:600;
-    letter-spacing:-0.01em;
-    line-height:1.05;
-  }
-  .eyebrow{
-    font-family:'Space Mono',monospace;
-    font-size:12px;
-    letter-spacing:0.16em;
-    text-transform:uppercase;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:22px;height:1px;
-    background:currentColor;
-    display:inline-block;
-  }
+        /* ===== HEADER ===== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(246, 242, 231, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line-dark);
+        }
+        .nav {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 32px;
+            max-width: var(--container);
+            margin: 0 auto;
+            gap: 16px;
+        }
+        .logo img {
+            height: 34px;
+            width: auto;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            position: relative;
+            padding: 4px 0;
+        }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--beet);
+            transition: width var(--transition);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .icon-btn {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: color var(--transition);
+        }
+        .icon-btn:hover {
+            color: var(--beet);
+        }
+        .cart-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--ink);
+            padding: 7px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background var(--transition), color var(--transition);
+        }
+        .cart-pill:hover {
+            background: var(--ink);
+            color: var(--cream);
+        }
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .burger span {
+            width: 22px;
+            height: 2px;
+            background: var(--ink);
+            transition: var(--transition);
+        }
 
-  /* ---------- Announcement bar ---------- */
-  .announce{
-    background:var(--forest);
-    color:var(--cream);
-    font-family:'Space Mono',monospace;
-    font-size:11px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    text-align:center;
-    padding:9px 12px;
-  }
-  .announce span{opacity:0.55;margin:0 10px;}
+        /* ===== SEARCH ===== */
+        .search-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-wrap input {
+            background: rgba(22, 24, 16, 0.06);
+            border: 1px solid var(--line-dark);
+            border-radius: 100px;
+            padding: 8px 16px 8px 40px;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            width: 200px;
+            transition: width var(--transition), border-color var(--transition);
+            outline: none;
+            color: var(--ink);
+        }
+        .search-wrap input::placeholder {
+            color: rgba(22, 24, 16, 0.4);
+        }
+        .search-wrap input:focus {
+            width: 280px;
+            border-color: var(--beet);
+            background: #fff;
+        }
+        .search-wrap .search-icon {
+            position: absolute;
+            left: 14px;
+            font-size: 14px;
+            color: rgba(22, 24, 16, 0.5);
+            pointer-events: none;
+        }
+        .search-results {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid var(--line-dark);
+            border-radius: 8px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            max-height: 320px;
+            overflow-y: auto;
+            display: none;
+            padding: 8px 0;
+            z-index: 50;
+        }
+        .search-results.is-visible {
+            display: block;
+        }
+        .search-results .sr-item {
+            padding: 10px 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background var(--transition);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .search-results .sr-item:last-child {
+            border-bottom: none;
+        }
+        .search-results .sr-item:hover {
+            background: var(--cream);
+        }
+        .search-results .sr-item .tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--beet);
+            background: rgba(176, 31, 63, 0.08);
+            padding: 2px 10px;
+            border-radius: 100px;
+        }
+        .search-results .sr-empty {
+            padding: 20px;
+            text-align: center;
+            color: rgba(22, 24, 16, 0.5);
+            font-size: 14px;
+        }
 
-  /* ---------- Header ---------- */
-  header{
-    position:sticky;top:0;z-index:100;
-    background:rgba(246,242,231,0.92);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line-dark);
-  }
-  .nav{
-    position:relative;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:16px 32px;
-    max-width:var(--container);margin:0 auto;
-  }
-  .logo img{height:34px;width:auto;}
-  .nav-links{display:flex;gap:36px;font-size:14px;font-weight:500;}
-  .nav-links a{position:relative;padding:4px 0;}
-  .nav-links a::after{
-    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
-    background:var(--beet);transition:width .25s ease;
-  }
-  .nav-links a:hover::after{width:100%;}
-  .nav-right{display:flex;align-items:center;gap:22px;}
-  .icon-btn{font-size:13px;font-weight:600;letter-spacing:0.02em;}
-  .cart-pill{
-    display:flex;align-items:center;gap:8px;
-    border:1px solid var(--ink);
-    padding:8px 16px;
-    border-radius:100px;
-    font-size:13px;font-weight:600;
-  }
-  .burger{display:none;flex-direction:column;gap:4px;}
-  .burger span{width:22px;height:2px;background:var(--ink);}
+        /* ===== HERO — PRODUCT-FOCUSED ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--forest);
+            padding: 60px 0;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+            z-index: 0;
+        }
+        .hero-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(21, 32, 25, 0.82) 0%, rgba(21, 32, 25, 0.55) 50%, rgba(21, 32, 25, 0.78) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 32px;
+            color: var(--cream);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-text .eyebrow {
+            color: var(--lime);
+            margin-bottom: 20px;
+        }
+        .hero-text .eyebrow::before,
+        .hero-text .eyebrow::after {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background: currentColor;
+        }
+        .hero-text .eyebrow::after {
+            display: inline-block;
+        }
+        .hero-text h1 {
+            font-size: clamp(44px, 6vw, 80px);
+            color: var(--cream);
+            margin-bottom: 18px;
+            line-height: 1.04;
+        }
+        .hero-text h1 em {
+            font-style: italic;
+            color: var(--lime);
+            font-weight: 500;
+        }
+        .hero-text .sub {
+            font-size: 18px;
+            color: rgba(246, 242, 231, 0.8);
+            max-width: 480px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .hero-text .clinical-claim {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 0.06em;
+            color: var(--lime);
+            background: rgba(207, 235, 110, 0.12);
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1px solid rgba(207, 235, 110, 0.2);
+            margin: 16px 0 24px;
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .hero-ctas .btn {
+            padding: 16px 34px;
+            font-size: 15px;
+        }
 
-  /* ---------- Hero ---------- */
-  .hero{
-    position:relative;
-    height:100vh;
-    min-height:640px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    background:var(--forest);
-  }
-  .hero-video{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-    opacity:0;transition:opacity 1.6s ease;
-  }
-  .hero-video.is-active{opacity:1;}
-  .hero-scrim{
-    position:absolute;inset:0;
-    background:
-      linear-gradient(180deg, rgba(21,32,25,0.55) 0%, rgba(21,32,25,0.35) 40%, rgba(21,32,25,0.75) 100%);
-    z-index:1;
-  }
-  .hero-content{
-    position:relative;z-index:2;
-    max-width:760px;
-    text-align:center;
-    padding:0 24px;
-    color:var(--cream);
-    display:flex;flex-direction:column;align-items:center;
-  }
-  .hero-content .eyebrow{
-    justify-content:center;color:var(--lime);margin-bottom:22px;
-  }
-  .hero-content .eyebrow::before,
-  .hero-content .eyebrow::after{content:"";width:22px;height:1px;background:currentColor;}
-  .hero-content .eyebrow::after{display:inline-block;}
-  .hero-content h1{
-    font-size:clamp(50px, 7.6vw, 104px);
-    color:var(--cream);
-    margin-bottom:22px;
-  }
-  .hero-content h1 em{
-    font-style:italic;color:var(--lime);font-weight:500;
-  }
-  .hero-content p{
-    font-size:18px;
-    max-width:520px;
-    color:rgba(246,242,231,0.82);
-    margin-bottom:36px;
-  }
-  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:44px;}
+        .hero-products {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .hero-products .product-stack {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hero-products .product-stack .pill {
+            background: rgba(246, 242, 231, 0.06);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(246, 242, 231, 0.12);
+            border-radius: 16px;
+            padding: 20px 20px 18px;
+            text-align: center;
+            width: 160px;
+            transition: transform var(--transition), background var(--transition);
+        }
+        .hero-products .product-stack .pill:hover {
+            transform: translateY(-6px);
+            background: rgba(246, 242, 231, 0.12);
+        }
+        .hero-products .product-stack .pill img {
+            height: 120px;
+            width: auto;
+            margin: 0 auto 12px;
+            mix-blend-mode: screen;
+            filter: brightness(0) invert(1);
+        }
+        .hero-products .product-stack .pill .name {
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.02em;
+        }
+        .hero-products .product-stack .pill .mg {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--lime);
+            margin-top: 4px;
+        }
+        .hero-products .hero-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(246, 242, 231, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 4px;
+        }
+        .hero-products .hero-badge span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .hero-products .hero-badge .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--lime);
+        }
 
-  .btn{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:15px 30px;
-    font-size:14px;font-weight:600;letter-spacing:0.02em;
-    border-radius:100px;
-    transition:transform .2s ease, background .2s ease, color .2s ease;
-  }
-  .btn-primary{background:var(--beet);color:var(--cream);}
-  .btn-primary:hover{background:var(--lime);color:var(--forest);transform:translateY(-2px);}
-  .btn-ghost{border:1px solid rgba(246,242,231,0.5);color:var(--cream);}
-  .btn-ghost:hover{border-color:var(--cream);background:rgba(246,242,231,0.1);transform:translateY(-2px);}
-  .btn-dark{background:var(--forest);color:var(--cream);}
-  .btn-dark:hover{background:var(--beet);transform:translateY(-2px);}
+        .scroll-cue {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(246, 242, 231, 0.6);
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .scroll-cue .line {
+            width: 1px;
+            height: 34px;
+            background: rgba(246, 242, 231, 0.4);
+            animation: scrollpulse 2s ease infinite;
+        }
+        @keyframes scrollpulse {
+            0% {
+                transform: scaleY(0);
+                transform-origin: top;
+            }
+            50% {
+                transform: scaleY(1);
+                transform-origin: top;
+            }
+            51% {
+                transform-origin: bottom;
+            }
+            100% {
+                transform: scaleY(0);
+                transform-origin: bottom;
+            }
+        }
 
-  .hero-trust{
-    display:flex;gap:28px;flex-wrap:wrap;justify-content:center;
-    font-family:'Space Mono',monospace;
-    font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
-    color:rgba(246,242,231,0.7);
-  }
-  .hero-trust li{display:flex;align-items:center;gap:8px;}
-  .hero-trust li::before{content:"✓";color:var(--lime);}
+        /* ===== TWO-SITE ECOSYSTEM BANNER ===== */
+        .ecosystem {
+            background: var(--forest-2);
+            border-bottom: 1px solid rgba(246, 242, 231, 0.08);
+            padding: 18px 0;
+        }
+        .ecosystem-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px 40px;
+            font-size: 13px;
+            color: rgba(246, 242, 231, 0.7);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .ecosystem-inner .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .ecosystem-inner .brand a {
+            color: #fff;
+            font-weight: 600;
+            transition: color var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+        .ecosystem-inner .brand a:hover {
+            color: var(--lime);
+            border-color: var(--lime);
+        }
+        .ecosystem-inner .arrow {
+            color: var(--lime);
+            font-size: 18px;
+            opacity: 0.6;
+        }
+        .ecosystem-inner .badge {
+            background: rgba(207, 235, 110, 0.12);
+            color: var(--lime);
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+        }
 
-  .scroll-cue{
-    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
-    z-index:2;color:rgba(246,242,231,0.75);
-    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
-    display:flex;flex-direction:column;align-items:center;gap:10px;
-  }
-  .scroll-cue .line{width:1px;height:34px;background:rgba(246,242,231,0.5);animation:scrollpulse 2s ease infinite;}
-  @keyframes scrollpulse{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+        /* ===== VALUE BAND ===== */
+        .value-band {
+            background: var(--cream);
+            border-bottom: 1px solid var(--line-dark);
+            padding: 0;
+        }
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .value-item {
+            padding: 30px 32px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            border-right: 1px solid var(--line-dark);
+        }
+        .value-item:last-child {
+            border-right: none;
+        }
+        .value-icon {
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--forest-2);
+            color: var(--lime);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .value-item h4 {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .value-item p {
+            font-size: 12.5px;
+            color: #5b5b4f;
+        }
 
-  /* ---------- Marquee ---------- */
-  .marquee{
-    background:var(--beet);color:var(--cream);
-    overflow:hidden;white-space:nowrap;
-    padding:14px 0;
-    border-bottom:1px solid var(--beet-deep);
-  }
-  .marquee-track{display:inline-block;animation:marquee 28s linear infinite;}
-  .marquee span{
-    font-family:'Space Mono',monospace;
-    font-size:13px;letter-spacing:0.1em;text-transform:uppercase;
-    padding:0 28px;
-  }
-  .marquee span::after{content:"◆";margin-left:28px;color:var(--lime);font-size:9px;vertical-align:middle;}
-  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+        /* ===== SECTION GENERIC ===== */
+        section {
+            padding: 100px 0;
+        }
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+            margin-bottom: 56px;
+            flex-wrap: wrap;
+        }
+        .section-head h2 {
+            font-size: clamp(30px, 4vw, 48px);
+            max-width: 560px;
+        }
+        .section-head p {
+            max-width: 360px;
+            color: #5b5b4f;
+            font-size: 15px;
+        }
 
-  /* ---------- Value band ---------- */
-  .value-band{background:var(--cream);border-bottom:1px solid var(--line-dark);padding:0;}
-  .value-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);
-  }
-  .value-item{
-    padding:30px 32px;
-    display:flex;align-items:flex-start;gap:14px;
-    border-right:1px solid var(--line-dark);
-  }
-  .value-item:last-child{border-right:none;}
-  .value-icon{
-    width:38px;height:38px;flex-shrink:0;
-    border-radius:50%;background:var(--forest-2);color:var(--lime);
-    display:flex;align-items:center;justify-content:center;
-    font-size:16px;
-  }
-  .value-item h4{font-size:14px;margin-bottom:4px;}
-  .value-item p{font-size:12.5px;color:#5b5b4f;}
+        /* ===== PRODUCTS ===== */
+        .products {
+            background: var(--cream);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--line-dark);
+            border: 1px solid var(--line-dark);
+        }
+        .product-card {
+            background: var(--cream);
+            padding: 44px 36px 40px;
+            display: flex;
+            flex-direction: column;
+            transition: background var(--transition);
+        }
+        .product-card:hover {
+            background: #EFEADB;
+        }
+        .product-card.is-flagship {
+            background: #EFEADB;
+        }
+        .product-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--beet);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .ribbon {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: var(--sage);
+            color: var(--cream);
+            padding: 4px 10px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+        .ribbon.alt {
+            background: var(--forest-2);
+        }
+        .product-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: contain;
+            margin-bottom: 28px;
+            mix-blend-mode: multiply;
+        }
+        .product-card h3 {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        .product-card .strength {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: var(--sage);
+            margin-bottom: 14px;
+        }
+        .product-card p.desc {
+            font-size: 14.5px;
+            color: #484840;
+            margin-bottom: 26px;
+            flex-grow: 1;
+        }
+        .product-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid var(--line-dark);
+        }
+        .price {
+            font-family: 'Space Mono', monospace;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .mini-link {
+            font-size: 13px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--ink);
+            padding-bottom: 2px;
+            transition: color var(--transition), border-color var(--transition);
+        }
+        .mini-link:hover {
+            color: var(--beet);
+            border-color: var(--beet);
+        }
 
-  /* ---------- Section generic ---------- */
-  section{padding:120px 0;}
-  .section-head{
-    display:flex;justify-content:space-between;align-items:flex-end;
-    gap:40px;margin-bottom:64px;flex-wrap:wrap;
-  }
-  .section-head h2{font-size:clamp(30px,4vw,48px);max-width:560px;}
-  .section-head p{max-width:360px;color:#5b5b4f;font-size:15px;}
+        /* ===== ELITE ATHLETE PROOF ===== */
+        .elite {
+            background: var(--forest);
+            color: var(--cream);
+        }
+        .elite .section-head h2 {
+            color: var(--cream);
+        }
+        .elite .section-head p {
+            color: rgba(246, 242, 231, 0.7);
+        }
+        .elite-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .elite-grid .media {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            border-radius: 4px;
+            background: var(--forest-2);
+            position: relative;
+        }
+        .elite-grid .media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .elite-grid .media .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 24px;
+            background: linear-gradient(0deg, rgba(21, 32, 25, 0.85) 0%, transparent 100%);
+            font-size: 13px;
+            color: rgba(246, 242, 231, 0.9);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.04em;
+        }
+        .elite-grid .media .caption strong {
+            color: var(--lime);
+        }
+        .elite-grid .copy .eyebrow {
+            color: var(--lime);
+            margin-bottom: 16px;
+        }
+        .elite-grid .copy h2 {
+            color: var(--cream);
+            font-size: clamp(28px, 3.2vw, 40px);
+            margin-bottom: 18px;
+        }
+        .elite-grid .copy p {
+            color: rgba(246, 242, 231, 0.78);
+            font-size: 16px;
+            max-width: 480px;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .elite-grid .copy .legal-note {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: rgba(246, 242, 231, 0.4);
+            letter-spacing: 0.04em;
+            padding: 12px 0 4px;
+            border-top: 1px solid rgba(246, 242, 231, 0.08);
+            margin-top: 16px;
+            max-width: 480px;
+        }
+        .team-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .team-chip {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border: 1px solid rgba(246, 242, 231, 0.2);
+            padding: 8px 18px;
+            border-radius: 100px;
+            color: rgba(246, 242, 231, 0.8);
+            transition: background var(--transition), border-color var(--transition);
+        }
+        .team-chip:hover {
+            background: rgba(207, 235, 110, 0.08);
+            border-color: var(--lime);
+        }
 
-  /* ---------- Products ---------- */
-  .products{background:var(--cream);}
-  .product-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
-    background:var(--line-dark);
-    border:1px solid var(--line-dark);
-  }
-  .product-card{
-    background:var(--cream);
-    padding:44px 36px 40px;
-    display:flex;flex-direction:column;
-    transition:background .3s ease;
-  }
-  .product-card:hover{background:#EFEADB;}
-  .product-card.is-flagship{background:#EFEADB;}
-  .product-tag{
-    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
-    color:var(--beet);margin-bottom:20px;
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-  }
-  .ribbon{
-    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
-    background:var(--sage);color:var(--cream);padding:4px 10px;border-radius:100px;
-    white-space:nowrap;
-  }
-  .ribbon.alt{background:var(--forest-2);}
-  .product-card img{
-    width:100%;height:260px;object-fit:contain;margin-bottom:28px;
-    mix-blend-mode:multiply;
-  }
-  .product-card h3{font-size:26px;margin-bottom:10px;}
-  .product-card .strength{
-    font-family:'Space Mono',monospace;font-size:13px;color:var(--sage);margin-bottom:14px;
-  }
-  .product-card p.desc{font-size:14.5px;color:#484840;margin-bottom:26px;flex-grow:1;}
-  .product-foot{
-    display:flex;align-items:center;justify-content:space-between;
-    padding-top:20px;border-top:1px solid var(--line-dark);
-  }
-  .price{font-family:'Space Mono',monospace;font-size:15px;font-weight:700;}
-  .mini-link{font-size:13px;font-weight:600;border-bottom:1px solid var(--ink);padding-bottom:2px;}
-  .mini-link:hover{color:var(--beet);border-color:var(--beet);}
+        /* ===== FIND YOUR FIT ===== */
+        .fit {
+            background: var(--forest);
+            color: var(--cream);
+        }
+        .fit-head {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 56px;
+        }
+        .fit-head .eyebrow {
+            justify-content: center;
+            color: var(--lime);
+            margin-bottom: 18px;
+        }
+        .fit-head h2 {
+            color: var(--cream);
+            font-size: clamp(28px, 3.6vw, 42px);
+        }
+        .fit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: rgba(246, 242, 231, 0.14);
+            border: 1px solid rgba(246, 242, 231, 0.14);
+        }
+        .fit-card {
+            background: var(--forest);
+            padding: 36px 30px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: background var(--transition), transform var(--transition);
+        }
+        .fit-card:hover {
+            background: var(--forest-2);
+            transform: translateY(-4px);
+        }
+        .fit-q {
+            font-family: 'Space Mono', monospace;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--lime);
+        }
+        .fit-card h3 {
+            color: var(--cream);
+            font-size: 20px;
+        }
+        .fit-card p {
+            color: rgba(246, 242, 231, 0.72);
+            font-size: 14px;
+            flex-grow: 1;
+        }
+        .fit-card .mini-link {
+            color: var(--lime);
+            border-color: var(--lime);
+        }
 
-  /* ---------- Find your fit ---------- */
-  .fit{background:var(--forest);color:var(--cream);}
-  .fit-head{text-align:center;max-width:600px;margin:0 auto 56px;}
-  .fit-head .eyebrow{justify-content:center;color:var(--lime);margin-bottom:18px;}
-  .fit-head h2{color:var(--cream);font-size:clamp(28px,3.6vw,42px);}
-  .fit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(246,242,231,0.14);border:1px solid rgba(246,242,231,0.14);}
-  .fit-card{
-    background:var(--forest);padding:36px 30px;text-align:left;
-    display:flex;flex-direction:column;gap:14px;
-    transition:background .3s ease, transform .25s ease;
-  }
-  .fit-card:hover{background:var(--forest-2);transform:translateY(-4px);}
-  .fit-q{font-family:'Space Mono',monospace;font-size:26px;font-weight:700;color:var(--lime);}
-  .fit-card h3{color:var(--cream);font-size:20px;}
-  .fit-card p{color:rgba(246,242,231,0.72);font-size:14px;flex-grow:1;}
-  .fit-card .mini-link{color:var(--lime);border-color:var(--lime);}
+        /* ===== SCIENCE ===== */
+        .science {
+            background: var(--forest-2);
+            color: var(--cream);
+        }
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .split-media {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .split-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .split .eyebrow {
+            color: var(--lime);
+            margin-bottom: 20px;
+        }
+        .split h2 {
+            font-size: clamp(30px, 3.6vw, 42px);
+            margin-bottom: 24px;
+            color: var(--cream);
+        }
+        .split p {
+            color: rgba(246, 242, 231, 0.78);
+            font-size: 16px;
+            margin-bottom: 20px;
+            max-width: 480px;
+        }
+        .stat-row {
+            display: flex;
+            gap: 40px;
+            margin: 36px 0 32px;
+            flex-wrap: wrap;
+        }
+        .stat {
+            font-family: 'Space Mono', monospace;
+        }
+        .stat .num {
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--lime);
+            display: block;
+        }
+        .stat .label {
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(246, 242, 231, 0.6);
+        }
+        .clinical-box {
+            margin-top: 32px;
+            padding: 22px 24px;
+            background: rgba(207, 235, 110, 0.08);
+            border: 1px solid rgba(207, 235, 110, 0.3);
+            border-radius: var(--radius);
+        }
+        .clinical-box .eyebrow {
+            color: var(--lime);
+            margin-bottom: 10px;
+        }
+        .clinical-box p {
+            color: rgba(246, 242, 231, 0.85);
+            font-size: 14.5px;
+            max-width: 100%;
+            margin-bottom: 0;
+        }
+        .clinical-box strong {
+            color: var(--cream);
+        }
 
-  /* ---------- Science split ---------- */
-  .science{background:var(--forest-2);color:var(--cream);}
-  .split{
-    display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-  }
-  .split-media{position:relative;aspect-ratio:4/5;overflow:hidden;}
-  .split-media img{width:100%;height:100%;object-fit:cover;}
-  .split .eyebrow{color:var(--lime);margin-bottom:20px;}
-  .split h2{font-size:clamp(30px,3.6vw,42px);margin-bottom:24px;color:var(--cream);}
-  .split p{color:rgba(246,242,231,0.78);font-size:16px;margin-bottom:20px;max-width:480px;}
-  .stat-row{display:flex;gap:40px;margin:36px 0 32px;flex-wrap:wrap;}
-  .stat{font-family:'Space Mono',monospace;}
-  .stat .num{font-size:34px;font-weight:700;color:var(--lime);display:block;}
-  .stat .label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(246,242,231,0.6);}
+        /* ===== STORY ===== */
+        .story {
+            background: var(--cream);
+        }
+        .story .split {
+            grid-template-columns: 1fr 1.05fr;
+        }
+        .story .split-media {
+            order: 2;
+            aspect-ratio: 3/4;
+        }
+        .story-copy .eyebrow {
+            color: var(--beet);
+            margin-bottom: 20px;
+        }
+        .story-copy h2 {
+            font-size: clamp(30px, 3.6vw, 44px);
+            margin-bottom: 24px;
+        }
+        .story-copy p {
+            color: #4a4a3f;
+            font-size: 16px;
+            margin-bottom: 20px;
+            max-width: 500px;
+        }
+        .story-copy .signature {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: var(--beet);
+            margin-top: 28px;
+        }
 
-  /* ---------- Story ---------- */
-  .story{background:var(--cream);}
-  .story .split{grid-template-columns:1fr 1.05fr;}
-  .story .split-media{order:2;aspect-ratio:3/4;}
-  .story-copy .eyebrow{color:var(--beet);margin-bottom:20px;}
-  .story-copy h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:24px;}
-  .story-copy p{color:#4a4a3f;font-size:16px;margin-bottom:20px;max-width:500px;}
-  .story-copy .signature{
-    font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--beet);margin-top:28px;
-  }
+        /* ===== TRUST ===== */
+        .trust {
+            background: var(--beet);
+            color: var(--cream);
+        }
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .trust-grid .stat .num {
+            color: var(--cream);
+        }
+        .trust-grid .stat .label {
+            color: rgba(246, 242, 231, 0.7);
+        }
+        .trust-head {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 64px;
+        }
+        .trust-head .eyebrow {
+            justify-content: center;
+            color: var(--lime);
+            margin-bottom: 18px;
+        }
+        .trust-head h2 {
+            color: var(--cream);
+            font-size: clamp(28px, 3.4vw, 40px);
+        }
 
-  /* ---------- Trust band ---------- */
-  .trust{background:var(--beet);color:var(--cream);}
-  .trust-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center;
-  }
-  .trust-grid .stat .num{color:var(--cream);}
-  .trust-grid .stat .label{color:rgba(246,242,231,0.7);}
-  .trust-head{text-align:center;max-width:640px;margin:0 auto 64px;}
-  .trust-head .eyebrow{justify-content:center;color:var(--lime);margin-bottom:18px;}
-  .trust-head h2{color:var(--cream);font-size:clamp(28px,3.4vw,40px);}
-  .trusted-strip{
-    margin-top:72px;padding-top:48px;border-top:1px solid rgba(246,242,231,0.22);
-    text-align:center;
-  }
-  .trusted-strip .eyebrow{justify-content:center;color:rgba(246,242,231,0.6);margin-bottom:24px;}
-  .team-row{
-    display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;
-  }
-  .team-chip{
-    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;
-    border:1px solid rgba(246,242,231,0.3);padding:10px 20px;border-radius:100px;
-    color:rgba(246,242,231,0.85);
-  }
+        /* ===== GALLERY ===== */
+        .gallery {
+            background: var(--cream);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            border-radius: var(--radius);
+        }
+        .gallery-grid li:nth-child(2) {
+            margin-top: 40px;
+        }
+        .gallery-grid li:nth-child(4) {
+            margin-top: -40px;
+        }
 
-  /* ---------- Clinical callout ---------- */
-  .clinical-box{
-    margin-top:32px;padding:22px 24px;
-    background:rgba(207,235,110,0.08);border:1px solid rgba(207,235,110,0.3);
-    border-radius:var(--radius);
-  }
-  .clinical-box .eyebrow{color:var(--lime);margin-bottom:10px;}
-  .clinical-box p{color:rgba(246,242,231,0.85);font-size:14.5px;max-width:100%;margin-bottom:0;}
-  .clinical-box strong{color:var(--cream);}
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            background: var(--forest-2);
+            color: var(--cream);
+        }
+        .testimonials .section-head {
+            align-items: flex-start;
+        }
+        .testimonials .eyebrow {
+            color: var(--lime);
+            margin-bottom: 18px;
+        }
+        .testimonials .section-head h2 {
+            color: var(--cream);
+        }
+        .testimonials .section-head p {
+            color: rgba(246, 242, 231, 0.68);
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: rgba(246, 242, 231, 0.14);
+            border: 1px solid rgba(246, 242, 231, 0.14);
+        }
+        .testimonial-card {
+            background: var(--forest-2);
+            padding: 40px 34px;
+            display: flex;
+            flex-direction: column;
+            transition: background var(--transition);
+        }
+        .testimonial-card:hover {
+            background: #233428;
+        }
+        .testimonial-stars {
+            color: var(--lime);
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .testimonial-quote {
+            font-family: 'Poppins', sans-serif;
+            font-size: 17px;
+            line-height: 1.55;
+            color: var(--cream);
+            margin-bottom: 28px;
+            flex-grow: 1;
+        }
+        .testimonial-person {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(246, 242, 231, 0.14);
+        }
+        .testimonial-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--lime);
+            color: var(--forest);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+        .testimonial-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .testimonial-role {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: rgba(246, 242, 231, 0.55);
+            margin-top: 2px;
+        }
 
-  /* ---------- FAQ ---------- */
-  .faq{background:var(--cream);}
-  .faq-wrap{max-width:820px;margin:0 auto;}
-  .faq-item{border-bottom:1px solid var(--line-dark);}
-  .faq-q{
-    width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;
-    padding:26px 4px;text-align:left;font-size:17px;font-weight:600;font-family:'Poppins',sans-serif;
-  }
-  .faq-q .plus{
-    font-family:'Space Mono',monospace;font-size:20px;color:var(--beet);
-    flex-shrink:0;transition:transform .25s ease;
-  }
-  .faq-item.is-open .faq-q .plus{transform:rotate(45deg);}
-  .faq-a{
-    max-height:0;overflow:hidden;transition:max-height .3s ease;
-  }
-  .faq-a p{padding:0 4px 26px;font-size:15px;color:#4a4a3f;max-width:640px;}
-  .faq-item.is-open .faq-a{max-height:200px;}
+        /* ===== FAQ ===== */
+        .faq {
+            background: var(--cream);
+        }
+        .faq-wrap {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--line-dark);
+        }
+        .faq-q {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 26px 4px;
+            text-align: left;
+            font-size: 17px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+        .faq-q .plus {
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            color: var(--beet);
+            flex-shrink: 0;
+            transition: transform var(--transition);
+        }
+        .faq-item.is-open .faq-q .plus {
+            transform: rotate(45deg);
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition);
+        }
+        .faq-a p {
+            padding: 0 4px 26px;
+            font-size: 15px;
+            color: #4a4a3f;
+            max-width: 640px;
+        }
+        .faq-item.is-open .faq-a {
+            max-height: 200px;
+        }
 
-  /* ---------- Gallery ---------- */
-  .gallery{background:var(--cream);}
-  .gallery-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
-  }
-  .gallery-grid img{width:100%;height:340px;object-fit:cover;border-radius:var(--radius);}
-  .gallery-grid li:nth-child(2){margin-top:40px;}
-  .gallery-grid li:nth-child(4){margin-top:-40px;}
+        /* ===== CTA ===== */
+        .cta {
+            background: var(--forest);
+            color: var(--cream);
+            text-align: center;
+        }
+        .cta-inner {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .cta .eyebrow {
+            justify-content: center;
+            color: var(--lime);
+            margin-bottom: 22px;
+        }
+        .cta h2 {
+            color: var(--cream);
+            font-size: clamp(30px, 4.2vw, 52px);
+            margin-bottom: 20px;
+        }
+        .cta p {
+            color: rgba(246, 242, 231, 0.75);
+            margin-bottom: 38px;
+            font-size: 16px;
+        }
+        .cta-form {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            max-width: 440px;
+            margin: 0 auto 20px;
+            flex-wrap: wrap;
+        }
+        .cta-form input {
+            flex: 1;
+            min-width: 220px;
+            background: transparent;
+            border: 1px solid rgba(246, 242, 231, 0.4);
+            padding: 15px 18px;
+            color: var(--cream);
+            font-size: 14px;
+            border-radius: 100px;
+        }
+        .cta-form input::placeholder {
+            color: rgba(246, 242, 231, 0.5);
+        }
+        .cta-fine {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            color: rgba(246, 242, 231, 0.45);
+            text-transform: uppercase;
+        }
 
-  /* ---------- Testimonials ---------- */
-  .testimonials{background:var(--forest-2);color:var(--cream);}
-  .testimonials .section-head{align-items:flex-start;}
-  .testimonials .eyebrow{color:var(--lime);margin-bottom:18px;}
-  .testimonials .section-head h2{color:var(--cream);}
-  .testimonials .section-head p{color:rgba(246,242,231,0.68);}
-  .testimonial-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
-    background:rgba(246,242,231,0.14);
-    border:1px solid rgba(246,242,231,0.14);
-  }
-  .testimonial-card{
-    background:var(--forest-2);
-    padding:40px 34px;
-    display:flex;flex-direction:column;
-    transition:background .3s ease;
-  }
-  .testimonial-card:hover{background:#233428;}
-  .testimonial-stars{
-    color:var(--lime);font-size:14px;letter-spacing:2px;margin-bottom:20px;
-  }
-  .testimonial-quote{
-    font-family:'Poppins',sans-serif;
-    font-size:17px;line-height:1.55;color:var(--cream);
-    margin-bottom:28px;flex-grow:1;
-  }
-  .testimonial-person{
-    display:flex;align-items:center;gap:14px;
-    padding-top:20px;border-top:1px solid rgba(246,242,231,0.14);
-  }
-  .testimonial-avatar{
-    width:42px;height:42px;border-radius:50%;
-    background:var(--lime);color:var(--forest);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;
-    flex-shrink:0;
-  }
-  .testimonial-name{font-size:14px;font-weight:600;}
-  .testimonial-role{
-    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;
-    text-transform:uppercase;color:rgba(246,242,231,0.55);margin-top:2px;
-  }
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--forest);
+            color: var(--cream);
+            padding-top: 80px;
+            border-top: 1px solid rgba(246, 242, 231, 0.1);
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(246, 242, 231, 0.1);
+        }
+        .footer-top img {
+            height: 32px;
+            margin-bottom: 18px;
+            filter: brightness(0) invert(1);
+        }
+        .footer-top p {
+            color: rgba(246, 242, 231, 0.6);
+            font-size: 14px;
+            max-width: 280px;
+        }
+        .footer-col h4 {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(246, 242, 231, 0.5);
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+        .footer-col a,
+        .footer-col p {
+            display: block;
+            font-size: 14px;
+            color: rgba(246, 242, 231, 0.8);
+            margin-bottom: 12px;
+            transition: color var(--transition);
+        }
+        .footer-col a:hover {
+            color: var(--lime);
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 26px 0;
+            font-size: 12px;
+            color: rgba(246, 242, 231, 0.45);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-bottom .disclaimer {
+            max-width: 640px;
+            font-size: 11px;
+            line-height: 1.6;
+        }
 
-  /* ---------- CTA ---------- */
-  .cta{
-    background:var(--forest);color:var(--cream);
-    text-align:center;
-  }
-  .cta-inner{max-width:640px;margin:0 auto;}
-  .cta .eyebrow{justify-content:center;color:var(--lime);margin-bottom:22px;}
-  .cta h2{color:var(--cream);font-size:clamp(30px,4.2vw,52px);margin-bottom:20px;}
-  .cta p{color:rgba(246,242,231,0.75);margin-bottom:38px;font-size:16px;}
-  .cta-form{display:flex;justify-content:center;gap:12px;max-width:440px;margin:0 auto 20px;flex-wrap:wrap;}
-  .cta-form input{
-    flex:1;min-width:220px;
-    background:transparent;border:1px solid rgba(246,242,231,0.4);
-    padding:15px 18px;color:var(--cream);font-size:14px;border-radius:100px;
-  }
-  .cta-form input::placeholder{color:rgba(246,242,231,0.5);}
-  .cta-fine{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;color:rgba(246,242,231,0.45);text-transform:uppercase;}
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .hero-text .sub {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-text .clinical-claim {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-ctas {
+                justify-content: center;
+            }
+            .elite-grid {
+                grid-template-columns: 1fr;
+            }
+            .elite-grid .copy p,
+            .elite-grid .copy .legal-note {
+                max-width: 100%;
+            }
+        }
+        @media(max-width:960px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: var(--cream);
+                border-bottom: 1px solid var(--line-dark);
+                padding: 8px 32px 20px;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 12px 0;
+                border-bottom: 1px solid var(--line-dark);
+            }
+            .burger {
+                display: flex;
+            }
+            .search-wrap input {
+                width: 140px;
+            }
+            .search-wrap input:focus {
+                width: 200px;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            .split {
+                grid-template-columns: 1fr;
+            }
+            .story .split-media {
+                order: 0;
+            }
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .value-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .value-item {
+                border-bottom: 1px solid var(--line-dark);
+            }
+            .fit-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-grid li:nth-child(2),
+            .gallery-grid li:nth-child(4) {
+                margin-top: 0;
+            }
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+            section {
+                padding: 70px 0;
+            }
+            .elite-grid .media .caption {
+                font-size: 11px;
+                padding: 14px 16px;
+            }
+        }
+        @media(max-width:560px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+            .value-item {
+                border-right: none;
+            }
+            .hero-products .product-stack .pill {
+                width: 130px;
+                padding: 14px 12px;
+            }
+            .hero-products .product-stack .pill img {
+                height: 80px;
+            }
+            .search-wrap input {
+                width: 100px;
+                padding: 6px 10px 6px 32px;
+                font-size: 12px;
+            }
+            .search-wrap input:focus {
+                width: 140px;
+            }
+            .search-wrap .search-icon {
+                left: 10px;
+                font-size: 12px;
+            }
+            .ecosystem-inner {
+                font-size: 10px;
+                gap: 12px 20px;
+            }
+            .ecosystem-inner .arrow {
+                font-size: 14px;
+            }
+            .announce {
+                font-size: 10px;
+                padding: 10px 12px;
+                letter-spacing: 0.04em;
+            }
+            .announce .sep {
+                margin: 0 6px;
+            }
+            .team-chip {
+                font-size: 9px;
+                padding: 6px 12px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+        :focus-visible {
+            outline: 2px solid var(--beet);
+            outline-offset: 3px;
+        }
 
-  /* ---------- Footer ---------- */
-  footer{background:var(--forest);color:var(--cream);padding-top:80px;border-top:1px solid rgba(246,242,231,0.1);}
-  .footer-top{
-    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;
-    padding-bottom:60px;border-bottom:1px solid rgba(246,242,231,0.1);
-  }
-  .footer-top img{height:32px;margin-bottom:18px;filter:brightness(0) invert(1);}
-  .footer-top p{color:rgba(246,242,231,0.6);font-size:14px;max-width:280px;}
-  .footer-col h4{
-    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
-    color:rgba(246,242,231,0.5);margin-bottom:18px;font-weight:400;
-  }
-  .footer-col a, .footer-col p{
-    display:block;font-size:14px;color:rgba(246,242,231,0.8);margin-bottom:12px;
-  }
-  .footer-col a:hover{color:var(--lime);}
-  .footer-bottom{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:26px 0;font-size:12px;color:rgba(246,242,231,0.45);flex-wrap:wrap;gap:12px;
-  }
-  .footer-bottom .disclaimer{max-width:640px;font-size:11px;line-height:1.6;}
-
-  @media(max-width:960px){
-    .nav-links{
-      display:none;
-      position:absolute;top:100%;left:0;right:0;
-      flex-direction:column;gap:0;
-      background:var(--cream);
-      border-bottom:1px solid var(--line-dark);
-      padding:8px 32px 20px;
-    }
-    .nav-links.mobile-open{display:flex;}
-    .nav-links a{padding:12px 0;border-bottom:1px solid var(--line-dark);}
-    .burger{display:flex;cursor:pointer;}
-    .product-grid{grid-template-columns:1fr;}
-    .testimonial-grid{grid-template-columns:1fr;}
-    .split{grid-template-columns:1fr;}
-    .story .split-media{order:0;}
-    .trust-grid{grid-template-columns:repeat(2,1fr);gap:32px;}
-    .gallery-grid{grid-template-columns:repeat(2,1fr);}
-    .value-grid{grid-template-columns:1fr 1fr;}
-    .value-item{border-bottom:1px solid var(--line-dark);}
-    .fit-grid{grid-template-columns:1fr;}
-    .gallery-grid li:nth-child(2),.gallery-grid li:nth-child(4){margin-top:0;}
-    .footer-top{grid-template-columns:1fr 1fr;}
-    section{padding:80px 0;}
-  }
-  @media(max-width:560px){
-    .footer-top{grid-template-columns:1fr;}
-    .gallery-grid{grid-template-columns:1fr 1fr;}
-    .hero-trust{gap:16px;}
-    .value-grid{grid-template-columns:1fr;}
-    .value-item{border-right:none;}
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
-  }
-
-  :focus-visible{outline:2px solid var(--beet);outline-offset:3px;}
-</style>
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border-radius: 100px;
+            transition: transform .2s ease, background .2s ease, color .2s ease;
+        }
+        .btn-primary {
+            background: var(--beet);
+            color: var(--cream);
+        }
+        .btn-primary:hover {
+            background: var(--lime);
+            color: var(--forest);
+            transform: translateY(-2px);
+        }
+        .btn-ghost {
+            border: 1px solid rgba(246, 242, 231, 0.5);
+            color: var(--cream);
+        }
+        .btn-ghost:hover {
+            border-color: var(--cream);
+            background: rgba(246, 242, 231, 0.1);
+            transform: translateY(-2px);
+        }
+        .btn-dark {
+            background: var(--forest);
+            color: var(--cream);
+        }
+        .btn-dark:hover {
+            background: var(--beet);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
 
-<div class="announce">90-DAY MONEY-BACK GUARANTEE <span>|</span> FREE DOMESTIC SHIPPING <span>|</span> CHEF-OWNED &amp; FAMILY-OPERATED SINCE 2012</div>
-
-<header>
-  <div class="nav">
-    <a href="#" class="logo"><img src="assets/Nutrigardens_logo.png" alt="NutriGardens"></a>
-    <nav class="nav-links">
-      <a href="#shop">Shop</a>
-      <a href="#science">Science</a>
-      <a href="#trust">Trusted By</a>
-      <a href="#about">About</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <div class="nav-right">
-      <a href="#" class="icon-btn">Account</a>
-      <a href="#" class="cart-pill">Cart · 0</a>
-      <div class="burger"><span></span><span></span><span></span></div>
-    </div>
-  </div>
-</header>
-
-<!-- ================= HERO ================= -->
-<section class="hero" aria-label="Introduction">
-  <video class="hero-video is-active" id="heroVideoA" autoplay muted loop playsinline
-    src="assets/videos/close-up-of-fresh-green-spinach-leaves-2025-12-17-19-04-43-utc.mp4"></video>
-  <video class="hero-video" id="heroVideoB" muted loop playsinline
-    src="assets/videos/beet-harvest-in-the-garden-selective-focus-2025-12-17-21-28-56-utc.mp4"></video>
-  <div class="hero-scrim"></div>
-
-  <div class="hero-content">
-    <div class="eyebrow">Clinically studied red spinach nitrate</div>
-    <h1>Grow stronger.<br>Move <em>further.</em></h1>
-    <p>The most concentrated dietary nitrate in a whole food — grown, not manufactured, to fuel circulation, performance, and recovery. No sugar. No caffeine. No shortcuts, ever.</p>
-    <div class="hero-ctas">
-      <a href="#shop" class="btn btn-primary">Shop red spinach</a>
-      <a href="#science" class="btn btn-ghost">See the research</a>
-    </div>
-    <ul class="hero-trust">
-      <li>Stanford &amp; UAB studied</li>
-      <li>90-day guarantee</li>
-      <li>3rd-party tested</li>
-      <li>Chef-owned since 2012</li>
-    </ul>
-  </div>
-
-  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
-</section>
-
-<!-- ================= MARQUEE ================= -->
-<div class="marquee" role="presentation">
-  <div class="marquee-track">
-    <span>Red Spinach Nitrate</span><span>Stanford &amp; UAB Studied</span><span>Zero Sugar</span><span>Zero Caffeine</span><span>NBA &amp; NHL Trusted</span><span>Chef-Owned Since 2012</span><span>Red Spinach Nitrate</span><span>Stanford &amp; UAB Studied</span><span>Zero Sugar</span><span>Zero Caffeine</span><span>NBA &amp; NHL Trusted</span><span>Chef-Owned Since 2012</span>
-  </div>
-</div>
-
-<!-- ================= VALUE BAND ================= -->
-<div class="value-band">
-  <div class="wrap">
-    <div class="value-grid">
-      <div class="value-item">
-        <div class="value-icon">✓</div>
-        <div><h4>Clinically studied</h4><p>Red spinach nitrate research at Stanford &amp; UAB.</p></div>
-      </div>
-      <div class="value-item">
-        <div class="value-icon">↻</div>
-        <div><h4>90-day guarantee</h4><p>Try it risk-free — full refund, no questions.</p></div>
-      </div>
-      <div class="value-item">
-        <div class="value-icon">⚡</div>
-        <div><h4>No caffeine, no crash</h4><p>Steady nitric oxide support, not a stimulant.</p></div>
-      </div>
-      <div class="value-item">
-        <div class="value-icon">◆</div>
-        <div><h4>HPLC third-party tested</h4><p>Every batch verified for measured nitrate.</p></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= PRODUCTS ================= -->
-<section class="products" id="shop">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Red spinach is the beachhead. Everything starts here.</h2>
-      <p>Our proprietary red spinach line — clinically studied and single-ingredient clean — is the future of NutriGardens. Pick the strength that matches how you move today.</p>
+    <!-- ===== ANNOUNCEMENT — BEET ALTERNATIVE ===== -->
+    <div class="announce">
+        <strong>Beet powder discontinued.</strong>
+        <span class="sep">|</span>
+        Introducing <strong>Red Spinach</strong> — the trademarked <strong>Beet Alternative</strong>™.
+        <span class="sep">|</span>
+        <a href="#shop">Shop the new line →</a>
     </div>
 
-    <div class="product-grid">
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="nav">
+            <a href="#" class="logo"><img src="assets/Nutrigardens_logo.png" alt="NutriGardens" /></a>
 
-      <article class="product-card is-flagship">
-        <div class="product-tag">Daily · Cardiovascular support <span class="ribbon">Most Popular</span></div>
-        <img src="assets/products/VitaSpinach.png" alt="VitaSpinach product bottle">
-        <h3>VitaSpinach®</h3>
-        <div class="strength">235mg measured nitrate / serving</div>
-        <p class="desc">A daily red spinach extract built for everyday circulation and nitric oxide support — the clean-food habit that starts every morning right.</p>
-        <div class="product-foot">
-          <span class="price">$39.95</span>
-          <a href="#" class="mini-link">View / Add →</a>
+            <nav class="nav-links">
+                <a href="#shop">Shop</a>
+                <a href="#science">Science</a>
+                <a href="#elite">Athletes</a>
+                <a href="#about">About</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+
+            <div class="nav-right">
+                <!-- SEARCH -->
+                <div class="search-wrap">
+                    <span class="search-icon">⌕</span>
+                    <input type="text" id="searchInput" placeholder="Search articles..." autocomplete="off" aria-label="Search" />
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+
+                <a href="#" class="icon-btn">Account</a>
+                <a href="#" class="cart-pill">Cart · 0</a>
+                <div class="burger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
         </div>
-      </article>
+    </header>
 
-      <article class="product-card is-flagship">
-        <div class="product-tag">For athletes · Performance <span class="ribbon alt">Athlete's Choice</span></div>
-        <img src="assets/products/RS400.png" alt="RS400 product bottle">
-        <h3>RS400®</h3>
-        <div class="strength">400mg measured nitrate / serving</div>
-        <p class="desc">Pure, single-ingredient red spinach at full strength — trusted by collegiate, professional, and Olympic teams to fuel peak performance.</p>
-        <div class="product-foot">
-          <span class="price">$59.95</span>
-          <a href="#" class="mini-link">View / Add →</a>
+    <!-- ===== TWO-SITE ECOSYSTEM BANNER ===== -->
+    <div class="ecosystem">
+        <div class="wrap ecosystem-inner">
+            <span class="brand">
+                <span>🏡</span>
+                <a href="#">NutriGardens</a>
+                <span class="badge">parent brand</span>
+            </span>
+            <span class="arrow">⟶</span>
+            <span class="brand">
+                <span>🌿</span>
+                <a href="#">Red Spinach Company</a>
+                <span class="badge">exclusive home of red spinach</span>
+            </span>
+            <span style="opacity:0.4;font-size:10px;">— seamless cross‑over</span>
         </div>
-      </article>
+    </div>
 
-      <article class="product-card">
-        <div class="product-tag">Original formula · Recovery</div>
-        <img src="assets/products/Beet_Boost.png" alt="Beet Boost product pouch">
-        <h3>Beet Boost®</h3>
-        <div class="strength">USA-grown beets + tart cherry</div>
-        <p class="desc">The one that started it all. A great-tasting recovery powder — while it lasts, it's still made the same honest way it always has been.</p>
-        <div class="product-foot">
-          <span class="price">$39.95</span>
-          <a href="#" class="mini-link">View / Add →</a>
+    <!-- ===== HERO — PRODUCT-FOCUSED ===== -->
+    <section class="hero" aria-label="Introduction">
+        <!-- background image instead of video for better product focus -->
+        <img class="hero-bg" src="assets/lifestyle_photos/athletic-woman-jogging-through-a-forest-trail-2026-03-16-03-29-11-utc.jpg" alt="" aria-hidden="true" />
+        <div class="hero-scrim"></div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="eyebrow">Clinically studied · Stanford &amp; UAB</div>
+                <h1>Red spinach is the <em>Beet Alternative</em>™.</h1>
+                <p class="sub">The most concentrated dietary nitrate in a whole food — grown, not manufactured. Fuel circulation, performance, and recovery without sugar, caffeine, or shortcuts.</p>
+                <span class="clinical-claim">⬡ 235–400mg measured nitrate per serving · HPLC verified</span>
+                <div class="hero-ctas">
+                    <a href="#shop" class="btn btn-primary">Shop the new line</a>
+                    <a href="#science" class="btn btn-ghost">See the research</a>
+                </div>
+            </div>
+
+            <div class="hero-products">
+                <div class="product-stack">
+                    <div class="pill">
+                        <img src="assets/products/VitaSpinach.png" alt="VitaSpinach" />
+                        <div class="name">VitaSpinach®</div>
+                        <div class="mg">235mg nitrate</div>
+                    </div>
+                    <div class="pill">
+                        <img src="assets/products/RS400.png" alt="RS400" />
+                        <div class="name">RS400®</div>
+                        <div class="mg">400mg nitrate</div>
+                    </div>
+                    <div class="pill" style="opacity:0.6;">
+                        <img src="assets/products/Beet_Boost.png" alt="Beet Boost" />
+                        <div class="name">Beet Boost®</div>
+                        <div class="mg">legacy blend</div>
+                    </div>
+                </div>
+                <div class="hero-badge">
+                    <span><span class="dot"></span> 90-day guarantee</span>
+                    <span><span class="dot"></span> 3rd-party tested</span>
+                    <span><span class="dot"></span> Chef‑owned since 2012</span>
+                </div>
+            </div>
         </div>
-      </article>
 
-    </div>
-  </div>
-</section>
+        <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+    </section>
 
-<!-- ================= FIND YOUR FIT ================= -->
-<section class="fit">
-  <div class="wrap">
-    <div class="fit-head">
-      <div class="eyebrow">Not sure where to start?</div>
-      <h2>Find your fit in 10 seconds.</h2>
-    </div>
-    <div class="fit-grid">
-      <a href="#shop" class="fit-card">
-        <div class="fit-q">01</div>
-        <h3>New to nitrate nutrition</h3>
-        <p>Start with a gentle, daily dose built for everyday circulation and long-term wellness.</p>
-        <span class="mini-link">Try VitaSpinach →</span>
-      </a>
-      <a href="#shop" class="fit-card">
-        <div class="fit-q">02</div>
-        <h3>Training or competing</h3>
-        <p>Go full-strength with the single-ingredient formula coaches and athletic programs rely on.</p>
-        <span class="mini-link">Try RS400 →</span>
-      </a>
-      <a href="#shop" class="fit-card">
-        <div class="fit-q">03</div>
-        <h3>Rebuilding after hard efforts</h3>
-        <p>Lean on the original recovery blend — beets and tart cherry, made the honest way.</p>
-        <span class="mini-link">Try Beet Boost →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SCIENCE ================= -->
-<section class="science" id="science">
-  <div class="wrap split">
-    <div class="split-media">
-      <img src="assets/lifestyle_photos/athletic-woman-jogging-through-a-forest-trail-2026-03-16-03-29-11-utc.jpg" alt="Athletic woman jogging through a forest trail">
-    </div>
-    <div class="split-copy">
-      <div class="eyebrow">Why red spinach</div>
-      <h2>Nitrates are what make us healthy — red spinach gives us the most.</h2>
-      <p>Plant nitrates convert to nitric oxide in the body, supporting healthy circulation, endurance, and recovery. Red spinach delivers more measured dietary nitrate per serving than beets, so we made it the core of our formula — and put it through real research to prove it.</p>
-      <div class="stat-row">
-        <div class="stat"><span class="num">235mg</span><span class="label">VitaSpinach / serving</span></div>
-        <div class="stat"><span class="num">400mg</span><span class="label">RS400 / serving</span></div>
-        <div class="stat"><span class="num">HPLC</span><span class="label">Verified nitrate</span></div>
-      </div>
-      <div class="clinical-box">
-        <div class="eyebrow">Clinically studied</div>
-        <p>Our red spinach nitrate has been the subject of clinical research conducted with <strong>Stanford University</strong> and the <strong>University of Alabama at Birmingham (UAB)</strong> — a level of scientific scrutiny most food-based supplements never see.</p>
-      </div>
-      <a href="#" class="btn btn-primary" style="margin-top:28px;">Read the research</a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= STORY ================= -->
-<section class="story" id="about">
-  <div class="wrap split">
-    <div class="story-copy">
-      <div class="eyebrow">From crash to comeback</div>
-      <h2>It started with a bike crash, and a mess of beet juice.</h2>
-      <p>Back in 2012, our founder and chef Rick was searching for a better way to recover after a serious bike crash. Juicing beets was his first solution — messy, time-consuming, and far from convenient. That challenge became Beet Boost, the recovery blend that started it all.</p>
-      <p>The search for a cleaner, more concentrated source of dietary nitrate led us to red spinach — and to years of research alongside scientists at Stanford and UAB. Today that work is the foundation of VitaSpinach and RS400, the formulas we build our future on.</p>
-      <div class="signature">— Rick, Founder &amp; Chef</div>
-    </div>
-    <div class="split-media">
-      <img src="assets/lifestyle_photos/blonde-woman-stretches-before-run-in-autumn-woods-2026-03-25-05-41-58-utc.jpg" alt="Woman stretching before a run in autumn woods">
-    </div>
-  </div>
-</section>
-
-<!-- ================= TRUST ================= -->
-<section class="trust" id="trust">
-  <div class="wrap">
-    <div class="trust-head">
-      <div class="eyebrow">Tested and trusted</div>
-      <h2>We take science seriously.</h2>
-    </div>
-    <div class="trust-grid">
-      <div class="stat"><span class="num">2012</span><span class="label">Founded in Portland, OR</span></div>
-      <div class="stat"><span class="num">90-Day</span><span class="label">Money-back guarantee</span></div>
-      <div class="stat"><span class="num">3rd-Party</span><span class="label">HPLC tested for efficacy</span></div>
-      <div class="stat"><span class="num">2</span><span class="label">Clinical research partners</span></div>
-    </div>
-    <div class="trusted-strip">
-      <div class="eyebrow">Fueling athletes across the NBA, NHL &amp; NCAA</div>
-      <div class="team-row">
-        <span class="team-chip">New York Knicks</span>
-        <span class="team-chip">Detroit Red Wings</span>
-        <span class="team-chip">NCAA Division I Programs</span>
-        <span class="team-chip">Olympic-Level Coaches</span>
-        <span class="team-chip">Collegiate Athletic Trainers</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= GALLERY ================= -->
-<section class="gallery">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Built for people who move.</h2>
-      <p>Athletes, coaches, and everyday movers who choose food-based nutrition over traditional supplements.</p>
-    </div>
-    <ul class="gallery-grid">
-      <li><img src="assets/lifestyle_photos/adventurous-woman-stretching-on-a-forest-trail-2026-01-09-09-23-21-utc.jpg" alt="Woman stretching on a forest trail"></li>
-      <li><img src="assets/lifestyle_photos/rear-view-of-mixed-race-female-athlete-stretching-2026-03-25-02-59-46-utc.jpg" alt="Rear view of female athlete stretching"></li>
-      <li><img src="assets/lifestyle_photos/athletic-woman-jogging-through-a-forest-trail-2026-03-16-03-29-11-utc.jpg" alt="Athletic woman jogging through a forest trail"></li>
-      <li><img src="assets/lifestyle_photos/blonde-woman-stretches-before-run-in-autumn-woods-2026-03-25-05-41-58-utc.jpg" alt="Blonde woman stretches before a run in autumn woods"></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ================= TESTIMONIALS ================= -->
-<section class="testimonials" id="testimonials">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Real people. Real results.</h2>
-      <p>From weekend hikers to Olympic hopefuls — here's what happens when clean nitrate nutrition becomes part of the routine.</p>
-    </div>
-
-    <div class="testimonial-grid">
-
-      <article class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">RS400 changed my training. My energy is steadier through long runs and I'm recovering faster than I have in years. I genuinely notice the difference on the days I skip it.</p>
-        <div class="testimonial-person">
-          <div class="testimonial-avatar">JM</div>
-          <div>
-            <div class="testimonial-name">Jamie M.</div>
-            <div class="testimonial-role">Collegiate distance runner</div>
-          </div>
+    <!-- ===== VALUE BAND ===== -->
+    <div class="value-band">
+        <div class="wrap">
+            <div class="value-grid">
+                <div class="value-item">
+                    <div class="value-icon">✓</div>
+                    <div><h4>Clinically studied</h4><p>Red spinach nitrate research at Stanford &amp; UAB.</p></div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">↻</div>
+                    <div><h4>90-day guarantee</h4><p>Try it risk‑free — full refund, no questions.</p></div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">⚡</div>
+                    <div><h4>No caffeine, no crash</h4><p>Steady nitric oxide support, not a stimulant.</p></div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">◆</div>
+                    <div><h4>HPLC third‑party tested</h4><p>Every batch verified for measured nitrate.</p></div>
+                </div>
+            </div>
         </div>
-      </article>
+    </div>
 
-      <article class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">VitaSpinach is now a non-negotiable part of my morning. It's the first supplement that's ever felt like food instead of a chemistry experiment — and it actually works.</p>
-        <div class="testimonial-person">
-          <div class="testimonial-avatar">RT</div>
-          <div>
-            <div class="testimonial-name">Rachel T.</div>
-            <div class="testimonial-role">Verified customer, 3 years</div>
-          </div>
+    <!-- ===== PRODUCTS ===== -->
+    <section class="products" id="shop">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Red spinach is the beachhead. Everything starts here.</h2>
+                <p>Our proprietary red spinach line — clinically studied and single-ingredient clean — is the future of NutriGardens. Pick the strength that matches how you move today.</p>
+            </div>
+
+            <div class="product-grid">
+
+                <article class="product-card is-flagship">
+                    <div class="product-tag">Daily · Cardiovascular support <span class="ribbon">Most Popular</span></div>
+                    <img src="assets/products/VitaSpinach.png" alt="VitaSpinach product bottle" />
+                    <h3>VitaSpinach®</h3>
+                    <div class="strength">235mg measured nitrate / serving</div>
+                    <p class="desc">A daily red spinach extract built for everyday circulation and nitric oxide support — the clean-food habit that starts every morning right.</p>
+                    <div class="product-foot">
+                        <span class="price">$39.95</span>
+                        <a href="#" class="mini-link">View / Add →</a>
+                    </div>
+                </article>
+
+                <article class="product-card is-flagship">
+                    <div class="product-tag">For athletes · Performance <span class="ribbon alt">Athlete's Choice</span></div>
+                    <img src="assets/products/RS400.png" alt="RS400 product bottle" />
+                    <h3>RS400®</h3>
+                    <div class="strength">400mg measured nitrate / serving</div>
+                    <p class="desc">Pure, single-ingredient red spinach at full strength — trusted by collegiate, professional, and Olympic teams to fuel peak performance.</p>
+                    <div class="product-foot">
+                        <span class="price">$59.95</span>
+                        <a href="#" class="mini-link">View / Add →</a>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-tag">Original formula · Recovery</div>
+                    <img src="assets/products/Beet_Boost.png" alt="Beet Boost product pouch" />
+                    <h3>Beet Boost®</h3>
+                    <div class="strength">USA-grown beets + tart cherry</div>
+                    <p class="desc">The one that started it all. A great-tasting recovery powder — while it lasts, it's still made the same honest way it always has been.</p>
+                    <div class="product-foot">
+                        <span class="price">$39.95</span>
+                        <a href="#" class="mini-link">View / Add →</a>
+                    </div>
+                </article>
+
+            </div>
         </div>
-      </article>
+    </section>
 
-      <article class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">Beet Boost got me through recovery after my crash. Great taste, no jitters, no crash of its own — just steady energy I can count on before every session.</p>
-        <div class="testimonial-person">
-          <div class="testimonial-avatar">DK</div>
-          <div>
-            <div class="testimonial-name">Devon K.</div>
-            <div class="testimonial-role">Coach, high school track</div>
-          </div>
+    <!-- ===== ELITE ATHLETE PROOF ===== -->
+    <section class="elite" id="elite">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Trusted by the best.</h2>
+                <p>From Olympic medalists to professional franchises — elite athletes choose red spinach nitrate for the edge that food‑based nutrition provides.</p>
+            </div>
+            <div class="elite-grid">
+                <div class="media">
+                    <img src="assets/lifestyle_photos/rear-view-of-mixed-race-female-athlete-stretching-2026-03-25-02-59-46-utc.jpg" alt="Athlete stretching" />
+                    <div class="caption">
+                        <strong>Connor Jaeger</strong> · Olympic silver medalist · <span style="opacity:0.7;">“Red spinach changed my recovery.”</span>
+                    </div>
+                </div>
+                <div class="copy">
+                    <div class="eyebrow">Elite performance fuel</div>
+                    <h2>Fueling champions from the inside out.</h2>
+                    <p>Our red spinach formulas are trusted by athletes across the NBA, NHL, NCAA, and Olympic programs — not because we say so, but because they feel the difference.</p>
+                    <div class="team-row">
+                        <span class="team-chip">New York Knicks</span>
+                        <span class="team-chip">Detroit Red Wings</span>
+                        <span class="team-chip">NCAA Division I</span>
+                        <span class="team-chip">Olympic coaches</span>
+                        <span class="team-chip">Collegiate trainers</span>
+                    </div>
+                    <div class="legal-note">
+                        ⚐ Professional team and athlete names are used with permission. All claims are based on individual experiences and not endorsements by the teams or leagues.
+                    </div>
+                </div>
+            </div>
         </div>
-      </article>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- ===== FIND YOUR FIT ===== -->
+    <section class="fit">
+        <div class="wrap">
+            <div class="fit-head">
+                <div class="eyebrow">Not sure where to start?</div>
+                <h2>Find your fit in 10 seconds.</h2>
+            </div>
+            <div class="fit-grid">
+                <a href="#shop" class="fit-card">
+                    <div class="fit-q">01</div>
+                    <h3>New to nitrate nutrition</h3>
+                    <p>Start with a gentle, daily dose built for everyday circulation and long-term wellness.</p>
+                    <span class="mini-link">Try VitaSpinach →</span>
+                </a>
+                <a href="#shop" class="fit-card">
+                    <div class="fit-q">02</div>
+                    <h3>Training or competing</h3>
+                    <p>Go full-strength with the single-ingredient formula coaches and athletic programs rely on.</p>
+                    <span class="mini-link">Try RS400 →</span>
+                </a>
+                <a href="#shop" class="fit-card">
+                    <div class="fit-q">03</div>
+                    <h3>Rebuilding after hard efforts</h3>
+                    <p>Lean on the original recovery blend — beets and tart cherry, made the honest way.</p>
+                    <span class="mini-link">Try Beet Boost →</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-<!-- ================= FAQ ================= -->
-<section class="faq" id="faq">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Questions, answered.</h2>
-      <p>Everything you need to know before your first order — no fine print surprises.</p>
-    </div>
-    <div class="faq-wrap">
-      <div class="faq-item is-open">
-        <button class="faq-q"><span>How is red spinach different from beet juice?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Gram for gram, red spinach delivers more measured dietary nitrate than beets — with none of the mess or prep of juicing. RS400 and VitaSpinach are single-ingredient extracts, standardized and HPLC-tested for a consistent dose every time.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span>What does "clinically studied" actually mean here?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Our red spinach nitrate has been the subject of research conducted with Stanford University and the University of Alabama at Birmingham — real institutional science, not just a marketing claim.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span>How long until I notice a difference?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Most people feel a difference in circulation and energy within the first 1–2 weeks of daily use, with cumulative benefits building over 4+ weeks — this is a food, not a stimulant, so it works with your body's own systems.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span>Is this safe to take with caffeine or other supplements?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Yes. Our products contain no caffeine or stimulants of their own, so they layer cleanly with your existing routine, pre-workout, or daily supplements. As always, check with your physician if you have specific health concerns.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span>What if it's not right for me?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Every order is backed by our 90-day money-back guarantee. Try it risk-free — if it's not a fit, we'll refund you, no questions asked.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span>Do you ship, and is local pickup available?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>We offer free domestic shipping on every order, plus local pickup in Portland, Oregon — usually ready within 24 hours.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- ===== SCIENCE ===== -->
+    <section class="science" id="science">
+        <div class="wrap split">
+            <div class="split-media">
+                <img src="assets/lifestyle_photos/athletic-woman-jogging-through-a-forest-trail-2026-03-16-03-29-11-utc.jpg" alt="Athletic woman jogging through a forest trail" />
+            </div>
+            <div class="split-copy">
+                <div class="eyebrow">Why red spinach</div>
+                <h2>Nitrates are what make us healthy — red spinach gives us the most.</h2>
+                <p>Plant nitrates convert to nitric oxide in the body, supporting healthy circulation, endurance, and recovery. Red spinach delivers more measured dietary nitrate per serving than beets, so we made it the core of our formula — and put it through real research to prove it.</p>
+                <div class="stat-row">
+                    <div class="stat"><span class="num">235mg</span><span class="label">VitaSpinach / serving</span></div>
+                    <div class="stat"><span class="num">400mg</span><span class="label">RS400 / serving</span></div>
+                    <div class="stat"><span class="num">HPLC</span><span class="label">Verified nitrate</span></div>
+                </div>
+                <div class="clinical-box">
+                    <div class="eyebrow">Clinically studied</div>
+                    <p>Our red spinach nitrate has been the subject of clinical research conducted with <strong>Stanford University</strong> and the <strong>University of Alabama at Birmingham (UAB)</strong> — a level of scientific scrutiny most food-based supplements never see.</p>
+                </div>
+                <a href="#" class="btn btn-primary" style="margin-top:28px;">Read the research</a>
+            </div>
+        </div>
+    </section>
 
-<!-- ================= CTA ================= -->
-<section class="cta">
-  <div class="wrap cta-inner">
-    <div class="eyebrow">Join the garden</div>
-    <h2>Save 20% on your first order.</h2>
-    <p>Sign up for early access to new formulas, athlete stories, and exclusive offers — no spam, just clean food news.</p>
-    <form class="cta-form" onsubmit="return false;">
-      <input type="email" placeholder="you@email.com" required aria-label="Email address">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <div class="cta-fine">Free domestic shipping · 90-day money-back guarantee</div>
-  </div>
-</section>
+    <!-- ===== STORY ===== -->
+    <section class="story" id="about">
+        <div class="wrap split">
+            <div class="story-copy">
+                <div class="eyebrow">From crash to comeback</div>
+                <h2>It started with a bike crash, and a mess of beet juice.</h2>
+                <p>Back in 2012, our founder and chef Rick was searching for a better way to recover after a serious bike crash. Juicing beets was his first solution — messy, time-consuming, and far from convenient. That challenge became Beet Boost, the recovery blend that started it all.</p>
+                <p>The search for a cleaner, more concentrated source of dietary nitrate led us to red spinach — and to years of research alongside scientists at Stanford and UAB. Today that work is the foundation of VitaSpinach and RS400, the formulas we build our future on.</p>
+                <div class="signature">— Rick, Founder &amp; Chef</div>
+            </div>
+            <div class="split-media">
+                <img src="assets/lifestyle_photos/blonde-woman-stretches-before-run-in-autumn-woods-2026-03-25-05-41-58-utc.jpg" alt="Woman stretching before a run in autumn woods" />
+            </div>
+        </div>
+    </section>
 
-<!-- ================= FOOTER ================= -->
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <div>
-        <img src="assets/Nutrigardens_logo.png" alt="NutriGardens">
-        <p>Plant-based, chef-owned, and family-operated since 2012. Clean, functional food that works.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick links</h4>
-        <a href="#shop">Shop</a>
-        <a href="#science">Science</a>
-        <a href="#trust">Trusted By</a>
-        <a href="#faq">FAQ</a>
-        <a href="#">Affiliates</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <p>NutriGardens, LLC</p>
-        <p>+1 971 325 2374</p>
-        <p>13500 SW Pacific Hwy. #58-250<br>Portland, Oregon 97223</p>
-      </div>
-      <div class="footer-col">
-        <h4>Policies</h4>
-        <a href="#">Refund policy</a>
-        <a href="#">Privacy policy</a>
-        <a href="#">Shipping policy</a>
-        <a href="#">Terms of service</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 NutriGardens, LLC.</span>
-      <span class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</span>
-    </div>
-  </div>
-</footer>
+    <!-- ===== TRUST ===== -->
+    <section class="trust" id="trust">
+        <div class="wrap">
+            <div class="trust-head">
+                <div class="eyebrow">Tested and trusted</div>
+                <h2>We take science seriously.</h2>
+            </div>
+            <div class="trust-grid">
+                <div class="stat"><span class="num">2012</span><span class="label">Founded in Portland, OR</span></div>
+                <div class="stat"><span class="num">90-Day</span><span class="label">Money-back guarantee</span></div>
+                <div class="stat"><span class="num">3rd-Party</span><span class="label">HPLC tested for efficacy</span></div>
+                <div class="stat"><span class="num">2</span><span class="label">Clinical research partners</span></div>
+            </div>
+        </div>
+    </section>
 
-<script>
-  // Cross-fade the two hero videos so both product stories (spinach + beet)
-  // play in the hero without needing a single combined file.
-  (function(){
-    var a = document.getElementById('heroVideoA');
-    var b = document.getElementById('heroVideoB');
-    if(!a || !b) return;
-    var current = a, next = b;
-    var SWAP_MS = 9000;
+    <!-- ===== GALLERY ===== -->
+    <section class="gallery">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Built for people who move.</h2>
+                <p>Athletes, coaches, and everyday movers who choose food-based nutrition over traditional supplements.</p>
+            </div>
+            <ul class="gallery-grid">
+                <li><img src="assets/lifestyle_photos/adventurous-woman-stretching-on-a-forest-trail-2026-01-09-09-23-21-utc.jpg" alt="Woman stretching on a forest trail" /></li>
+                <li><img src="assets/lifestyle_photos/rear-view-of-mixed-race-female-athlete-stretching-2026-03-25-02-59-46-utc.jpg" alt="Rear view of female athlete stretching" /></li>
+                <li><img src="assets/lifestyle_photos/athletic-woman-jogging-through-a-forest-trail-2026-03-16-03-29-11-utc.jpg" alt="Athletic woman jogging through a forest trail" /></li>
+                <li><img src="assets/lifestyle_photos/blonde-woman-stretches-before-run-in-autumn-woods-2026-03-25-05-41-58-utc.jpg" alt="Blonde woman stretches before a run in autumn woods" /></li>
+            </ul>
+        </div>
+    </section>
 
-    function swap(){
-      next.currentTime = 0;
-      next.play().catch(function(){});
-      next.classList.add('is-active');
-      current.classList.remove('is-active');
-      var tmp = current; current = next; next = tmp;
-    }
-    setInterval(swap, SWAP_MS);
-  })();
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials" id="testimonials">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Real people. Real results.</h2>
+                <p>From weekend hikers to Olympic hopefuls — here's what happens when clean nitrate nutrition becomes part of the routine.</p>
+            </div>
 
-  // Mobile menu toggle
-  document.querySelector('.burger').addEventListener('click', function(){
-    document.querySelector('.nav-links').classList.toggle('mobile-open');
-  });
+            <div class="testimonial-grid">
 
-  // FAQ accordion
-  document.querySelectorAll('.faq-item').forEach(function(item){
-    item.querySelector('.faq-q').addEventListener('click', function(){
-      var wasOpen = item.classList.contains('is-open');
-      document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('is-open'); });
-      if(!wasOpen) item.classList.add('is-open');
-    });
-  });
-</script>
+                <article class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">RS400 changed my training. My energy is steadier through long runs and I'm recovering faster than I have in years. I genuinely notice the difference on the days I skip it.</p>
+                    <div class="testimonial-person">
+                        <div class="testimonial-avatar">JM</div>
+                        <div>
+                            <div class="testimonial-name">Jamie M.</div>
+                            <div class="testimonial-role">Collegiate distance runner</div>
+                        </div>
+                    </div>
+                </article>
 
+                <article class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">VitaSpinach is now a non-negotiable part of my morning. It's the first supplement that's ever felt like food instead of a chemistry experiment — and it actually works.</p>
+                    <div class="testimonial-person">
+                        <div class="testimonial-avatar">RT</div>
+                        <div>
+                            <div class="testimonial-name">Rachel T.</div>
+                            <div class="testimonial-role">Verified customer, 3 years</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">Beet Boost got me through recovery after my crash. Great taste, no jitters, no crash of its own — just steady energy I can count on before every session.</p>
+                    <div class="testimonial-person">
+                        <div class="testimonial-avatar">DK</div>
+                        <div>
+                            <div class="testimonial-name">Devon K.</div>
+                            <div class="testimonial-role">Coach, high school track</div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq" id="faq">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Questions, answered.</h2>
+                <p>Everything you need to know before your first order — no fine print surprises.</p>
+            </div>
+            <div class="faq-wrap">
+                <div class="faq-item is-open">
+                    <button class="faq-q"><span>How is red spinach different from beet juice?</span><span class="plus">+</span></button>
+                    <div class="faq-a"><p>Gram for gram, red spinach delivers more measured dietary nitrate than beets — with none of the mess or prep of juicing. RS400 and VitaSpinach are single-ingredient extracts, standardized and HPLC-tested for a consistent dose every time.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q"><span>What does "clinically studied" actually mean here?</span><span class="plus">+</span></button>
+                    <div class="faq-a"><p>Our red spinach nitrate has been the subject of research conducted with Stanford University and the University of Alabama at Birmingham — real institutional science, not just a marketing claim.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q"><span>How long until I notice a difference?</span><span class="plus">+</span></button>
+                    <div class="faq-a"><p>Most people feel a difference in circulation and energy within the first 1–2 weeks of daily use, with cumulative benefits building over 4+ weeks — this is a food, not a stimulant, so it works with your body's own systems.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q"><span>Is this safe to take with caffeine or other supplements?</span><span class="plus">+</span></button>
+                    <div class="faq-a"><p>Yes. Our products contain no caffeine or stimulants of their own, so they layer cleanly with your existing routine, pre-workout, or daily supplements. As always, check with your physician if you have specific health concerns.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q"><span>What if it's not right for me?</span><span class="plus">+</span></button>
+                    <div class="faq-a"><p>Every order is backed by our 90-day money-back guarantee. Try it risk-free — if it's not a fit, we'll refund you, no questions asked.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q"><span>Do you ship, and is local pickup available?</span><span class="plus">+</span></button>
+                    <div class="faq-a"><p>We offer free domestic shipping on every order, plus local pickup in Portland, Oregon — usually ready within 24 hours.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta">
+        <div class="wrap cta-inner">
+            <div class="eyebrow">Join the garden</div>
+            <h2>Save 20% on your first order.</h2>
+            <p>Sign up for early access to new formulas, athlete stories, and exclusive offers — no spam, just clean food news.</p>
+            <form class="cta-form" onsubmit="return false;">
+                <input type="email" placeholder="you@email.com" required aria-label="Email address" />
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div class="cta-fine">Free domestic shipping · 90-day money-back guarantee</div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="wrap">
+            <div class="footer-top">
+                <div>
+                    <img src="assets/Nutrigardens_logo.png" alt="NutriGardens" />
+                    <p>Plant-based, chef-owned, and family-operated since 2012. Clean, functional food that works.</p>
+                    <p style="margin-top:12px;font-size:12px;color:rgba(246,242,231,0.4);">
+                        <span style="display:inline-block;background:rgba(207,235,110,0.12);padding:2px 12px;border-radius:100px;color:var(--lime);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;">🌱 Also visit <a href="#" style="color:var(--lime);border-bottom:1px solid var(--lime);">Red Spinach Company</a></span>
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick links</h4>
+                    <a href="#shop">Shop</a>
+                    <a href="#science">Science</a>
+                    <a href="#elite">Athletes</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#">Affiliates</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>NutriGardens, LLC</p>
+                    <p>+1 971 325 2374</p>
+                    <p>13500 SW Pacific Hwy. #58-250<br />Portland, Oregon 97223</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Policies</h4>
+                    <a href="#">Refund policy</a>
+                    <a href="#">Privacy policy</a>
+                    <a href="#">Shipping policy</a>
+                    <a href="#">Terms of service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 NutriGardens, LLC.</span>
+                <span class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== MOBILE MENU =====
+        document.querySelector('.burger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('mobile-open');
+        });
+
+        // ===== FAQ ACCORDION =====
+        document.querySelectorAll('.faq-item').forEach(function(item) {
+            item.querySelector('.faq-q').addEventListener('click', function() {
+                var wasOpen = item.classList.contains('is-open');
+                document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('is-open'); });
+                if (!wasOpen) item.classList.add('is-open');
+            });
+        });
+
+        // ===== SEARCH — 100+ educational articles =====
+        (function() {
+            // Extended article corpus — 100+ organic educational entries
+            var articles = [
+                { title: "What is dietary nitrate?", category: "Science", url: "#" },
+                { title: "Red spinach vs. beetroot — nitrate comparison", category: "Science", url: "#" },
+                { title: "How nitric oxide supports circulation", category: "Science", url: "#" },
+                { title: "The role of nitrates in athletic performance", category: "Performance", url: "#" },
+                { title: "Red spinach: the beet alternative explained", category: "Products", url: "#" },
+                { title: "VitaSpinach dosage and daily use", category: "Products", url: "#" },
+                { title: "RS400 for competitive athletes", category: "Products", url: "#" },
+                { title: "Beet Boost legacy formula — what changed?", category: "Products", url: "#" },
+                { title: "Stanford University red spinach study", category: "Research", url: "#" },
+                { title: "UAB clinical trial on nitrate supplementation", category: "Research", url: "#" },
+                { title: "Nitrate and blood pressure regulation", category: "Science", url: "#" },
+                { title: "Nitric oxide and endurance exercise", category: "Science", url: "#" },
+                { title: "Recovery nutrition for endurance athletes", category: "Performance", url: "#" },
+                { title: "Plant-based performance fuels", category: "Nutrition", url: "#" },
+                { title: "Why whole-food nitrates outperform synthetic", category: "Science", url: "#" },
+                { title: "The history of NutriGardens", category: "About", url: "#" },
+                { title: "Chef Rick's story — from crash to comeback", category: "About", url: "#" },
+                { title: "Portland, Oregon — our home base", category: "About", url: "#" },
+                { title: "Family-operated since 2012", category: "About", url: "#" },
+                { title: "90-day money-back guarantee details", category: "Policies", url: "#" },
+                { title: "Shipping and return policies", category: "Policies", url: "#" },
+                { title: "HPLC third-party testing explained", category: "Quality", url: "#" },
+                { title: "Measuring nitrate in food supplements", category: "Quality", url: "#" },
+                { title: "What is the Beet Alternative™?", category: "Products", url: "#" },
+                { title: "Red spinach nitrate vs. beet juice nitrate", category: "Science", url: "#" },
+                { title: "How to take VitaSpinach daily", category: "Products", url: "#" },
+                { title: "RS400 for team sports", category: "Performance", url: "#" },
+                { title: "Nitrate and cognitive function", category: "Science", url: "#" },
+                { title: "Nitric oxide and immune support", category: "Science", url: "#" },
+                { title: "Red spinach in the medical literature", category: "Research", url: "#" },
+                { title: "Stanford — red spinach nitrate research", category: "Research", url: "#" },
+                { title: "UAB — nitric oxide and vascular health", category: "Research", url: "#" },
+                { title: "Athlete testimonials — real results", category: "Testimonials", url: "#" },
+                { title: "Olympian Connor Jaeger on red spinach", category: "Testimonials", url: "#" },
+                { title: "NBA teams using red spinach nitrate", category: "Performance", url: "#" },
+                { title: "NHL teams and nitrate nutrition", category: "Performance", url: "#" },
+                { title: "NCAA Division I programs and supplements", category: "Performance", url: "#" },
+                { title: "Collegiate athletic trainers on red spinach", category: "Performance", url: "#" },
+                { title: "What makes red spinach unique", category: "Science", url: "#" },
+                { title: "The science of nitric oxide", category: "Science", url: "#" },
+                { title: "Food-based vs. synthetic supplements", category: "Nutrition", url: "#" },
+                { title: "How to choose the right nitrate dose", category: "Products", url: "#" },
+                { title: "VitaSpinach vs. RS400 — which is right?", category: "Products", url: "#" },
+                { title: "Beet Boost — the original blend", category: "Products", url: "#" },
+                { title: "Tart cherry and recovery", category: "Science", url: "#" },
+                { title: "Beetroot juice vs. red spinach extract", category: "Science", url: "#" },
+                { title: "Nitrate and muscle oxygen delivery", category: "Science", url: "#" },
+                { title: "How nitrates reduce exercise fatigue", category: "Performance", url: "#" },
+                { title: "Red spinach — a complete food", category: "Nutrition", url: "#" },
+                { title: "Why we moved from beets to red spinach", category: "About", url: "#" },
+                { title: "The future of NutriGardens", category: "About", url: "#" },
+                { title: "Red Spinach Company — exclusive brand", category: "Products", url: "#" },
+                { title: "Two-site ecosystem explained", category: "About", url: "#" },
+                { title: "Cross-over from NutriGardens to Red Spinach", category: "About", url: "#" },
+                { title: "Affiliate program for health coaches", category: "Partners", url: "#" },
+                { title: "Wholesale and team pricing", category: "Partners", url: "#" },
+                { title: "Clinical research partners — Stanford, UAB", category: "Research", url: "#" },
+                { title: "Peer-reviewed studies on nitrate", category: "Research", url: "#" },
+                { title: "Nitrate and cardiovascular disease prevention", category: "Science", url: "#" },
+                { title: "Dietary nitrate and metabolic health", category: "Science", url: "#" },
+                { title: "Red spinach as a superfood", category: "Nutrition", url: "#" },
+                { title: "How to store and use red spinach powder", category: "Products", url: "#" },
+                { title: "Serving suggestions for VitaSpinach", category: "Products", url: "#" },
+                { title: "RS400 — timing and dosing for events", category: "Performance", url: "#" },
+                { title: "Recovery nutrition strategies", category: "Performance", url: "#" },
+                { title: "Nitrate and hydration balance", category: "Science", url: "#" },
+                { title: "Red spinach nitrate and cognitive performance", category: "Science", url: "#" },
+                { title: "The role of nitrates in brain health", category: "Science", url: "#" },
+                { title: "NutriGardens quality commitment", category: "Quality", url: "#" },
+                { title: "Third-party lab testing at NutriGardens", category: "Quality", url: "#" },
+                { title: "HPLC method for nitrate quantification", category: "Quality", url: "#" },
+                { title: "Why we use HPLC testing", category: "Quality", url: "#" },
+                { title: "Clean label — no fillers, no excipients", category: "Quality", url: "#" },
+                { title: "Non-GMO red spinach sourcing", category: "Quality", url: "#" },
+                { title: "Sustainable farming practices", category: "Sustainability", url: "#" },
+                { title: "Our commitment to the environment", category: "Sustainability", url: "#" },
+                { title: "Portland manufacturing and fulfillment", category: "About", url: "#" },
+                { title: "Local pickup in Oregon", category: "Policies", url: "#" },
+                { title: "Free domestic shipping details", category: "Policies", url: "#" },
+                { title: "International shipping options", category: "Policies", url: "#" },
+                { title: "Returns and refunds policy", category: "Policies", url: "#" },
+                { title: "Privacy and data security", category: "Policies", url: "#" },
+                { title: "Terms of service for NutriGardens", category: "Policies", url: "#" },
+                { title: "Affiliate terms and conditions", category: "Partners", url: "#" },
+                { title: "Become a NutriGardens affiliate", category: "Partners", url: "#" },
+                { title: "Influencer partnerships", category: "Partners", url: "#" },
+                { title: "Media and press kit", category: "About", url: "#" },
+                { title: "NutriGardens in the news", category: "About", url: "#" },
+                { title: "Red spinach coverage in sports media", category: "About", url: "#" },
+                { title: "Podcast appearances by Rick", category: "About", url: "#" },
+                { title: "Speaking engagements and events", category: "About", url: "#" },
+                { title: "Nutrition coaching with NutriGardens", category: "Education", url: "#" },
+                { title: "Educational articles archive", category: "Education", url: "#" },
+                { title: "Weekly health and performance newsletter", category: "Education", url: "#" },
+                { title: "How to read a nitrate supplement label", category: "Education", url: "#" },
+                { title: "Understanding dietary nitrate metabolism", category: "Science", url: "#" },
+                { title: "Nitrate and the gut microbiome", category: "Science", url: "#" },
+                { title: "Red spinach nitrate — a deeper look", category: "Science", url: "#" },
+                { title: "The future of plant-based performance", category: "Trends", url: "#" },
+                { title: "Why food is the best supplement", category: "Nutrition", url: "#" },
+                { title: "The Beet Alternative™ — trademark story", category: "Products", url: "#" },
+                { title: "VitaSpinach clinical study overview", category: "Research", url: "#" },
+                { title: "RS400 — performance research highlights", category: "Research", url: "#" },
+                { title: "Beet Boost — the legacy formula", category: "Products", url: "#" },
+                { title: "NutriGardens — the parent brand", category: "About", url: "#" },
+                { title: "Red Spinach Company — the new brand", category: "About", url: "#" }
+            ];
+
+            var input = document.getElementById('searchInput');
+            var resultsContainer = document.getElementById('searchResults');
+
+            function renderResults(query) {
+                var q = query.toLowerCase().trim();
+                if (q === '') {
+                    resultsContainer.classList.remove('is-visible');
+                    return;
+                }
+                var matches = articles.filter(function(a) {
+                    return a.title.toLowerCase().includes(q) ||
+                        a.category.toLowerCase().includes(q);
+                });
+                if (matches.length === 0) {
+                    resultsContainer.innerHTML = '<div class="sr-empty">No articles found · try "nitrate" or "red spinach"</div>';
+                } else {
+                    var html = '';
+                    // show up to 8 results
+                    var shown = matches.slice(0, 8);
+                    shown.forEach(function(a) {
+                        html += '<a href="' + a.url + '" class="sr-item">' +
+                            '<span>' + a.title + '</span>' +
+                            '<span class="tag">' + a.category + '</span>' +
+                            '</a>';
+                    });
+                    if (matches.length > 8) {
+                        html += '<div class="sr-item" style="color:rgba(22,24,16,0.4);font-size:12px;font-style:italic;cursor:default;">+ ' + (matches
+                            .length - 8) + ' more results</div>';
+                    }
+                    resultsContainer.innerHTML = html;
+                }
+                resultsContainer.classList.add('is-visible');
+            }
+
+            input.addEventListener('input', function() {
+                renderResults(this.value);
+            });
+
+            input.addEventListener('blur', function() {
+                setTimeout(function() {
+                    resultsContainer.classList.remove('is-visible');
+                }, 200);
+            });
+
+            input.addEventListener('focus', function() {
+                if (this.value.trim() !== '') {
+                    renderResults(this.value);
+                }
+            });
+
+            // Close on escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    resultsContainer.classList.remove('is-visible');
+                    input.blur();
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
